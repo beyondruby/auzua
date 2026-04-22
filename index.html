@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Auzua — Forging institutional SMEs.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ====================================================================
+     AUZUA — Modern landing page
+     Palette: forge-dark → sand → gold ember
+  ==================================================================== */
+
+  :root {
+    --ink:       #0f0c06;
+    --ink-2:     #1a1610;
+    --ink-3:     #2a2418;
+    --sand:      #e8dcbe;
+    --sand-2:    #f4ecd8;
+    --paper:     #faf5e6;
+    --taupe:     #8a7a5e;
+    --rule:      rgba(232, 220, 190, 0.12);
+    --rule-dark: rgba(15, 12, 6, 0.1);
+    --gold:      #d4a958;
+    --gold-hot:  #e6b94e;
+    --gold-deep: #a67c2e;
+    --ember:     radial-gradient(circle at center, rgba(230,185,78,0.5), rgba(212,169,88,0.15) 35%, transparent 65%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--ink); }
+  body {
+    background: var(--ink);
+    color: var(--sand);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 100, "opsz" 20;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  @media (max-width: 900px) { body { cursor: auto; } }
+
+  ::selection { background: var(--gold); color: var(--ink); }
+
+  img, svg { display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---- Grain overlay (subtle texture everywhere) ---- */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.55'/></svg>");
+  }
+
+  /* ---- Scroll progress bar ---- */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--gold);
+    z-index: 300;
+    transition: width 0.08s linear;
+  }
+
+  /* ---- Custom cursor ---- */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 400;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s, height 0.25s, background 0.25s;
+    mix-blend-mode: difference;
+  }
+  .cursor.hover { width: 44px; height: 44px; background: var(--paper); }
+
+  /* ---- Typography primitives ---- */
+  .display {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+  .display-narrow {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 85, "opsz" 96;
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  .italic-serif {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    letter-spacing: -0.015em;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ====================================================================
+     NAV
+  ==================================================================== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 150;
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: var(--paper);
+  }
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+  }
+  .logo-diamond {
+    width: 22px; height: 22px;
+    position: relative;
+  }
+  .logo-diamond svg { width: 100%; height: 100%; }
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  nav ul a {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+  nav ul a:hover { opacity: 1; }
+  .nav-cta {
+    padding: 0.5rem 1rem;
+    border: 1px solid currentColor;
+    border-radius: 99px;
+    font-size: 0.78rem !important;
+    opacity: 1 !important;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--paper); color: var(--ink); }
+  @media (max-width: 800px) {
+    nav { padding: 1rem 1.25rem; }
+    nav ul { gap: 1rem; }
+    nav ul li:not(:last-child) { display: none; }
+  }
+
+  /* ====================================================================
+     HERO
+  ==================================================================== */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    background: var(--ember);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+    filter: blur(20px);
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    color: var(--taupe);
+  }
+  .hero-top > div:first-child {
+    max-width: 24ch;
+    line-height: 1.5;
+  }
+  .hero-top .ar {
+    font-family: 'Fraunces', serif;
+    color: var(--sand);
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    opacity: 0.85;
+  }
+
+  .hero-center {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 0;
+  }
+  .hero-headline {
+    font-size: clamp(3rem, 13vw, 11.5rem);
+    color: var(--paper);
+  }
+  .hero-headline .line-2 {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-size: 0.52em;
+    letter-spacing: -0.02em;
+    color: var(--gold);
+    line-height: 1;
+    text-transform: none;
+    padding-left: 15%;
+    margin: 0.3em 0;
+  }
+  .hero-headline .line-3 {
+    font-variation-settings: "wdth" 85, "opsz" 96;
+    display: block;
+    color: var(--sand);
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: end;
+    position: relative;
+    z-index: 2;
+    color: var(--taupe);
+  }
+  .hero-bottom > div:first-child {
+    max-width: 32ch;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--sand);
+    opacity: 0.7;
+  }
+  .hero-bottom .scroll-ind {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0.6;
+  }
+  .scroll-ind .line-v {
+    width: 1px; height: 40px;
+    background: var(--sand);
+    animation: drop 2s ease infinite;
+  }
+  @keyframes drop {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    45%  { transform: scaleY(1); transform-origin: top; }
+    55%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  .hero-bottom > div:last-child {
+    text-align: right;
+  }
+  .hero-bottom .mono {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--sand);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 800px) {
+    .hero-top { flex-direction: column; gap: 2rem; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-bottom > div:last-child { text-align: left; }
+    .hero-headline .line-2 { padding-left: 0; }
+    .scroll-ind { display: none; }
+  }
+
+  /* Hero reveal animation */
+  .hero-headline .line {
+    display: block;
+    overflow: hidden;
+  }
+  .hero-headline .line > span {
+    display: inline-block;
+    animation: heroRise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-headline .line-1 > span { animation-delay: 0.15s; }
+  .hero-headline .line-2 > span { animation-delay: 0.35s; }
+  .hero-headline .line-3 > span { animation-delay: 0.55s; }
+  @keyframes heroRise {
+    from { transform: translateY(110%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .hero-top, .hero-bottom { animation: fadeIn 1.4s ease 0.9s both; }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ====================================================================
+     MARQUEE TICKER
+  ==================================================================== */
+  .marquee {
+    background: var(--ink-2);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    padding: 2rem 0;
+    white-space: nowrap;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: scrollX 40s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--sand);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .marquee-item.italic {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    text-transform: none;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.01em;
+  }
+  .marquee-dot {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  @keyframes scrollX {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ====================================================================
+     MANDATE SECTION
+  ==================================================================== */
+  .mandate {
+    padding: 10rem 2.5rem;
+    background: var(--paper);
+    color: var(--ink);
+    position: relative;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 3rem;
+  }
+  .section-label::before {
+    content: "";
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .mandate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  @media (max-width: 1000px) { .mandate-grid { grid-template-columns: 1fr; gap: 4rem; } }
+
+  .mandate h2 {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+  }
+  .mandate h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold-deep);
+    text-transform: none;
+    letter-spacing: -0.02em;
+  }
+  .mandate-copy {
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 40ch;
+    color: var(--ink-3);
+  }
+
+  /* Metrics block */
+  .metric-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule-dark);
+    position: relative;
+  }
+  .metric-row:first-child { border-top: 1px solid var(--rule-dark); }
+  .metric-row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+  .metric-row-label span {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-top: 0.4rem;
+    text-transform: none;
+    font-weight: 500;
+  }
+  .metric-row-value {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .metric-row.highlight .metric-row-value {
+    color: var(--gold-deep);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.02em;
+  }
+  .metric-row::after {
+    content: "";
+    position: absolute;
+    right: 0; top: 50%;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .metric-row.highlight::after { opacity: 1; }
+
+  /* ====================================================================
+     THESIS — full-bleed editorial statement
+  ==================================================================== */
+  .thesis {
+    padding: 12rem 2.5rem;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .thesis::before {
+    content: "";
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: var(--ember);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .thesis-quote {
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(2rem, 5.5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--sand);
+    position: relative;
+    z-index: 2;
+  }
+  .thesis-quote em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .thesis-quote .pill {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-style: normal;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-size: 0.25em;
+    padding: 0.3em 0.8em;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: baseline;
+    vertical-align: middle;
+    margin: 0 0.2em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-style: normal;
+    transform: translateY(-0.15em);
+  }
+  .thesis-meta {
+    max-width: 1400px;
+    margin: 4rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 800px) { .thesis-meta { grid-template-columns: 1fr; gap: 2rem; } }
+  .thesis-meta h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .thesis-meta p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: var(--sand);
+    opacity: 0.85;
+  }
+
+  /* ====================================================================
+     FRAMEWORK — Bento grid
+  ==================================================================== */
+  .framework {
+    padding: 10rem 2.5rem;
+    background: var(--ink-2);
+    position: relative;
+  }
+  .framework-head {
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  @media (max-width: 800px) { .framework-head { grid-template-columns: 1fr; gap: 2rem; } }
+  .framework h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--paper);
+  }
+  .framework h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold);
+    text-transform: none;
+    letter-spacing: -0.02em;
+  }
+  .framework-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--sand);
+    opacity: 0.8;
+    max-width: 42ch;
+  }
+
+  .bento {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(240px, auto);
+    gap: 1rem;
+  }
+  @media (max-width: 900px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .bento { grid-template-columns: 1fr; } }
+
+  .tile {
+    background: var(--ink-3);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .tile:hover {
+    transform: translateY(-6px);
+    background: #332a1a;
+  }
+  .tile-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+  .tile-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--gold);
+    font-style: italic;
+  }
+  .tile-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--taupe);
+  }
+  .tile h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .tile p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--sand);
+    opacity: 0.7;
+  }
+  .tile-metric {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 700;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.03em;
+    margin-top: auto;
+  }
+  .tile-metric small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--taupe);
+    margin-top: 0.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  /* Bento layout — asymmetric */
+  .tile.t1 { grid-column: span 3; grid-row: span 2; }
+  .tile.t2 { grid-column: span 3; }
+  .tile.t3 { grid-column: span 2; }
+  .tile.t4 { grid-column: span 4; }
+  .tile.t5 { grid-column: span 6; }
+  @media (max-width: 900px) {
+    .tile.t1, .tile.t2, .tile.t3, .tile.t4, .tile.t5 {
+      grid-column: span 2;
+      grid-row: auto;
+    }
+  }
+  @media (max-width: 500px) {
+    .tile.t1, .tile.t2, .tile.t3, .tile.t4, .tile.t5 {
+      grid-column: span 1;
+    }
+  }
+
+  .tile.t1 { background: linear-gradient(155deg, #332a1a 0%, #1f1a10 100%); }
+  .tile.t1 .tile-metric { font-size: clamp(4rem, 10vw, 9rem); }
+  .tile.t5 { background: linear-gradient(110deg, #1f1a10 0%, #332a1a 80%); }
+  .tile.t5 {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .tile.t5 .tile-letter { font-size: 7rem; }
+  .tile.t5 h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .tile.t5 p { max-width: 50ch; }
+  .tile.t5 .tile-metric { margin-top: 0; }
+  @media (max-width: 900px) {
+    .tile.t5 { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  /* Ember highlight on t1 */
+  .tile.t1::before {
+    content: "";
+    position: absolute;
+    bottom: -150px; right: -150px;
+    width: 400px; height: 400px;
+    background: var(--ember);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* ====================================================================
+     SECTORS — horizontal scroll
+  ==================================================================== */
+  .sectors {
+    padding: 10rem 0 10rem;
+    background: var(--paper);
+    color: var(--ink);
+    overflow: hidden;
+  }
+  .sectors-head {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2.5rem 4rem;
+  }
+  .sectors h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+  .sectors h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold-deep);
+    text-transform: none;
+    letter-spacing: -0.02em;
+  }
+  .sector-list {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+  .sector-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto 30%;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--rule-dark);
+    position: relative;
+    transition: padding 0.5s;
+    cursor: pointer;
+  }
+  .sector-row:last-child { border-bottom: 1px solid var(--rule-dark); }
+  .sector-row:hover {
+    padding-left: 2rem;
+  }
+  .sector-row::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 50%;
+    width: 0; height: 6px;
+    background: var(--gold);
+    transform: translateY(-50%);
+    transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .sector-row:hover::before { width: 1.3rem; }
+
+  .sector-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--taupe);
+    letter-spacing: 0.15em;
+  }
+  .sector-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 110, "opsz" 96;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: color 0.4s;
+  }
+  .sector-row:hover .sector-name { color: var(--gold-deep); }
+  .sector-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--taupe);
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--rule-dark);
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .sector-tag.growth { color: var(--gold-deep); border-color: var(--gold); }
+  .sector-count {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--taupe);
+    text-align: right;
+  }
+
+  @media (max-width: 800px) {
+    .sector-row { grid-template-columns: 40px 1fr; gap: 1rem; }
+    .sector-tag, .sector-count { display: none; }
+  }
+
+  /* ====================================================================
+     DUAL LOOP
+  ==================================================================== */
+  .loop {
+    padding: 10rem 2.5rem;
+    background: var(--ink);
+    color: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+  .loop::before {
+    content: "";
+    position: absolute;
+    top: 30%; left: -10%;
+    width: 500px; height: 500px;
+    background: var(--ember);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .loop-head {
+    max-width: 1400px;
+    margin: 0 auto 5rem;
+  }
+  .loop h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--paper);
+    max-width: 18ch;
+  }
+  .loop h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold);
+    text-transform: none;
+  }
+
+  .loop-vis {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 1000px) { .loop-vis { grid-template-columns: 1fr; } }
+
+  .loop-copy {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--sand);
+    opacity: 0.85;
+  }
+  .loop-copy h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    font-style: normal;
+  }
+
+  .loop-core {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .loop-core-badge {
+    padding: 1.8rem 3rem;
+    border: 1px solid var(--gold);
+    border-radius: 2rem;
+    background: rgba(212, 169, 88, 0.08);
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .loop-core-badge .ar {
+    font-family: 'Fraunces', serif;
+    color: var(--gold);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  .loop-core-badge .name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    color: var(--paper);
+  }
+  .loop-core-badge .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--taupe);
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .loop-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
+    padding: 0.6rem 2rem;
+  }
+  .loop-arrow::before, .loop-arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .loop-arrow::before { right: 100%; transform: translateY(-50%); }
+  .loop-arrow::after  { left: 100%;  transform: translateY(-50%) scaleX(-1); }
+
+  .loop-subs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    width: 100%;
+  }
+  @media (max-width: 600px) { .loop-subs { grid-template-columns: repeat(2, 1fr); } }
+  .loop-sub {
+    padding: 1.3rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .loop-sub:hover { border-color: var(--gold); background: rgba(212,169,88,0.06); }
+  .loop-sub-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--paper);
+    margin-bottom: 0.2rem;
+  }
+  .loop-sub-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--taupe);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .loop-sub-status {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+  .loop-sub-status.live {
+    color: #8dd28d;
+    background: rgba(141, 210, 141, 0.12);
+  }
+  .loop-sub-status.soon {
+    color: var(--gold);
+    background: rgba(212, 169, 88, 0.12);
+  }
+
+  .loop-target {
+    max-width: 1000px;
+    margin: 5rem auto 0;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    line-height: 1.4;
+    color: var(--sand);
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    z-index: 2;
+  }
+  .loop-target strong {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .loop-target span {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* ====================================================================
+     GOVERNANCE
+  ==================================================================== */
+  .gov {
+    padding: 10rem 2.5rem;
+    background: var(--sand-2);
+    color: var(--ink);
+  }
+  .gov-head {
+    max-width: 1400px;
+    margin: 0 auto 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  @media (max-width: 800px) { .gov-head { grid-template-columns: 1fr; gap: 2rem; } }
+  .gov h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+  .gov h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold-deep);
+    text-transform: none;
+  }
+  .gov-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    max-width: 42ch;
+    color: var(--ink-3);
+  }
+
+  .gov-stack {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+  .gov-item {
+    background: var(--paper);
+    border: 1px solid var(--rule-dark);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 80px 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+    transition: all 0.4s;
+  }
+  .gov-item:hover {
+    background: #fff;
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -20px rgba(212, 169, 88, 0.3);
+  }
+  @media (max-width: 800px) { .gov-item { grid-template-columns: 1fr; gap: 1rem; } }
+
+  .gov-item-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--gold-deep);
+  }
+  .gov-item-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .gov-item-title small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .gov-item-body {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-3);
+  }
+  .gov-item-body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ====================================================================
+     PORTFOLIO
+  ==================================================================== */
+  .portfolio {
+    padding: 10rem 2.5rem;
+    background: var(--ink);
+    color: var(--sand);
+  }
+  .portfolio-head {
+    max-width: 1400px;
+    margin: 0 auto 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .portfolio h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--paper);
+  }
+  .portfolio h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold);
+    text-transform: none;
+  }
+  .portfolio-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .port-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 1100px) { .port-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .port-grid { grid-template-columns: 1fr; } }
+
+  .port-card {
+    background: var(--ink-2);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+  }
+  .port-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+  }
+  .port-viz {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+  }
+  .port-card:hover .port-viz { height: 200px; }
+  .port-logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 110, "opsz" 96;
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s;
+  }
+  .port-card:hover .port-logo { transform: scale(1.05); }
+  .port-logo small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+
+  .pv-cousin {
+    background: linear-gradient(135deg, #e8833a 0%, #b5541c 100%);
+    color: #fff;
+  }
+  .pv-cousin::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 50%);
+  }
+  .pv-step {
+    background: linear-gradient(135deg, #2a3a66 0%, #0a0f1e 100%);
+    color: #fff;
+  }
+  .pv-step::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(147, 170, 220, 0.2), transparent 50%);
+  }
+  .pv-yaqteen {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    color: #fff;
+  }
+  .pv-yaqteen::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -30px;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, #e8833a, transparent 70%);
+    opacity: 0.5;
+  }
+  .pv-yaqteen .port-logo small { color: #e8833a; }
+  .pv-hub {
+    background: linear-gradient(135deg, #9b88c4 0%, #5a4a8a 100%);
+    color: #fff;
+  }
+  .pv-hub::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.2), transparent 50%);
+  }
+
+  .port-body {
+    padding: 1.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex: 1;
+  }
+  .port-sector {
+    display: inline-flex;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--rule);
+    border-radius: 99px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    width: fit-content;
+  }
+  .port-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--sand);
+    opacity: 0.78;
+  }
+  .port-text strong {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--paper);
+    opacity: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ====================================================================
+     CTA — big, modern
+  ==================================================================== */
+  .cta {
+    padding: 10rem 2.5rem;
+    background: var(--paper);
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .cta::before {
+    content: "";
+    position: absolute;
+    top: -40%; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: var(--ember);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .cta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .cta h2 {
+    font-size: clamp(3rem, 10vw, 9rem);
+    margin-bottom: 2rem;
+  }
+  .cta h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    color: var(--gold-deep);
+    text-transform: none;
+  }
+  .cta p {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    max-width: 50ch;
+    margin: 0 auto 3rem;
+    line-height: 1.5;
+    color: var(--ink-3);
+  }
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2rem 1.2rem 2.5rem;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 99px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 115, "opsz" 20;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: none;
+  }
+  .btn-pill:hover {
+    background: var(--gold-deep);
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-pill .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    transition: transform 0.4s;
+    font-size: 1.1rem;
+  }
+  .btn-pill:hover .arrow { transform: rotate(-45deg); }
+
+  /* ====================================================================
+     FOOTER
+  ==================================================================== */
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 5rem 2.5rem 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footer-top {
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .footer-top { grid-template-columns: 1fr; } }
+
+  .footer-brand-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "wdth" 125, "opsz" 96;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--paper);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-ar {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand-tag {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--taupe);
+    font-size: 0.95rem;
+    max-width: 30ch;
+    line-height: 1.5;
+  }
+  footer h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.3rem;
+  }
+  footer ul { list-style: none; }
+  footer ul li {
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--sand);
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+  footer ul li:hover { opacity: 1; }
+  footer ul li a { color: inherit; }
+
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--taupe);
+    letter-spacing: 0.12em;
+  }
+  @media (max-width: 700px) {
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ====================================================================
+     Reveals
+  ==================================================================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.d1 { transition-delay: 0.1s; }
+  .reveal.d2 { transition-delay: 0.2s; }
+  .reveal.d3 { transition-delay: 0.3s; }
+  .reveal.d4 { transition-delay: 0.4s; }
+  .reveal.d5 { transition-delay: 0.5s; }
+
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="progress" id="progress"></div>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="logo-mark">
+    <div class="logo-diamond">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M 12 3 L 20 12 L 12 21 L 4 12 Z"/>
+        <path d="M 12 8 L 16 12 L 12 16 L 8 12 Z" opacity="0.6"/>
+      </svg>
+    </div>
+    AUZUA
+  </div>
+  <ul>
+    <li><a href="#mandate">Mandate</a></li>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact" class="nav-cta">Start a dialogue ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-glow" id="heroGlow"></div>
+
+  <div class="hero-top">
+    <div>
+      <span class="mono">(Est. 2024) — A Scalable SME Foundry</span><br/>
+      <span class="mono" style="color: var(--sand); opacity:0.5;">Kingdom of Saudi Arabia</span>
+    </div>
+    <div style="text-align:right;">
+      <div class="ar">مجموعة عزوة</div>
+      <span class="mono" style="color:var(--taupe);">Holding Group</span>
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <h1 class="hero-headline display">
+      <span class="line line-1"><span>Forging</span></span>
+      <span class="line line-2 italic-serif"><span>the future of</span></span>
+      <span class="line line-3 display-narrow"><span>businesses.</span></span>
+    </h1>
+  </div>
+
+  <div class="hero-bottom">
+    <div>
+      Industrializing entrepreneurial opportunities into de-risked institutional assets — from inception through Series A.
+    </div>
+    <div class="scroll-ind">
+      <span class="mono">Scroll</span>
+      <span class="line-v"></span>
+    </div>
+    <div>
+      <span class="mono">$610 Bn / 2035 Mandate</span>
+      <span class="mono">4 Subsidiaries · 4 Ventures</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <div class="marquee-item">Scalable SME Foundry</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item italic">Forging the future of businesses</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item">Institutional Venture Building</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item italic">Inception → Series A</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item">Kingdom of Saudi Arabia</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+
+    <div class="marquee-item">Scalable SME Foundry</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item italic">Forging the future of businesses</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item">Institutional Venture Building</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item italic">Inception → Series A</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+    <div class="marquee-item">Kingdom of Saudi Arabia</div>
+    <div class="marquee-item"><span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- ============ MANDATE ============ -->
+<section class="mandate" id="mandate">
+  <div class="container">
+    <div class="section-label reveal">01 / Mandate</div>
+
+    <div class="mandate-grid">
+      <div class="reveal">
+        <h2 class="display">
+          A <em>$610 Bn</em><br/>
+          opportunity.<br/>
+          <span style="display:block; color:var(--taupe);">Engineered,<br/>not inherited.</span>
+        </h2>
+        <p class="mandate-copy">
+          Saudi Arabia must grow SME GDP from 29% to 45% by 2035 to match OECD averages — a $355 Bn gap that cannot be closed by bootstrapped gambles. It requires institutional engineering. That mandate is Auzua's addressable arena.
+        </p>
+      </div>
+
+      <div class="metric-stack reveal d2">
+        <div class="metric-row">
+          <div class="metric-row-label">
+            2024 Actuals
+            <span>SME GDP contribution</span>
+          </div>
+          <div class="metric-row-value">29%</div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-row-label">
+            2030 Vision Target
+            <span>SME GDP contribution</span>
+          </div>
+          <div class="metric-row-value">35%</div>
+        </div>
+        <div class="metric-row highlight">
+          <div class="metric-row-label">
+            2035 OECD Benchmark
+            <span>SME GDP contribution</span>
+          </div>
+          <div class="metric-row-value">45%</div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-row-label">
+            11-Year CAGR
+            <span>Required growth trajectory</span>
+          </div>
+          <div class="metric-row-value">8.2%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THESIS ============ -->
+<section class="thesis">
+  <p class="thesis-quote reveal">
+    We don't find founders. <em>We forge them.</em> Auzua industrializes entrepreneurial opportunities through institutional governance — converting high-potential concepts into <span class="pill">De-risked Assets</span> ready for corporate acquisition.
+  </p>
+
+  <div class="thesis-meta">
+    <div class="reveal d1">
+      <h4>Vision</h4>
+      <p>Premier foundry for the Saudi real economy, forging the industrial and commercial backbone of the region.</p>
+    </div>
+    <div class="reveal d2">
+      <h4>Mission</h4>
+      <p>Kinship-grade backing that wards off risk, transforming the toll of innovation into a resilient economy.</p>
+    </div>
+    <div class="reveal d3">
+      <h4>Window</h4>
+      <p>Active deployment from Research through Series A — TRL 4 to TRL 6 is our sweet spot.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAMEWORK (BENTO) ============ -->
+<section class="framework" id="framework">
+  <div class="framework-head">
+    <div class="reveal">
+      <div class="section-label">02 / The Operating Model</div>
+      <h2 class="display">Five letters.<br/><em>One machine.</em></h2>
+    </div>
+    <p class="framework-intro reveal d2">
+      The AUZUA framework isn't a tagline — it's a set of defensible operating constraints with real metrics. Adaptive allocation, ultra-early entry, zero-leakage governance, unbreakable revenue, and an allied capability stack.
+    </p>
+  </div>
+
+  <div class="bento">
+    <div class="tile t1 reveal">
+      <div class="tile-top">
+        <div class="tile-letter">A</div>
+        <div class="tile-num">01 · Allocation</div>
+      </div>
+      <div>
+        <h3>Adaptive Allocation</h3>
+        <p>Capital is re-weighted annually across seven target arenas — continuously optimising the match between mandate, market and moment. No static sector bets.</p>
+      </div>
+      <div class="tile-metric">
+        7
+        <small>Target Arenas</small>
+      </div>
+    </div>
+
+    <div class="tile t2 reveal d1">
+      <div class="tile-top">
+        <div class="tile-letter">U</div>
+        <div class="tile-num">02 · Upside</div>
+      </div>
+      <div>
+        <h3>Ultra-early Upside</h3>
+        <p>Steepest potential value captured from inception through Series A.</p>
+      </div>
+      <div class="tile-metric">
+        10×
+        <small>Winner Multiple</small>
+      </div>
+    </div>
+
+    <div class="tile t3 reveal d2">
+      <div class="tile-top">
+        <div class="tile-letter">Z</div>
+        <div class="tile-num">03 · Governance</div>
+      </div>
+      <div>
+        <h3>Zero-leakage Governance</h3>
+      </div>
+      <div class="tile-metric">
+        &lt;1.5×
+        <small>Burn Multiple</small>
+      </div>
+    </div>
+
+    <div class="tile t4 reveal d3">
+      <div class="tile-top">
+        <div class="tile-letter">U</div>
+        <div class="tile-num">04 · Revenue</div>
+      </div>
+      <div>
+        <h3>Unbreakable Revenue Spine</h3>
+        <p>HQ economics are self-funded by mid-lifecycle — patience engineered, not inherited.</p>
+      </div>
+      <div class="tile-metric">
+        +$5M
+        <small>Annual Service Revenue</small>
+      </div>
+    </div>
+
+    <div class="tile t5 reveal d4">
+      <div class="tile-letter">A</div>
+      <div>
+        <div class="tile-num" style="margin-bottom:0.8rem;">05 · Capability</div>
+        <h3>Allied Capability Stack</h3>
+        <p>50+ years of aggregated board pedigree across venture, operations and capital — overhead scales sub-linearly with NAV tiers.</p>
+      </div>
+      <div class="tile-metric">
+        &lt;1.5%
+        <small>NAV : Overhead</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTORS ============ -->
+<section class="sectors">
+  <div class="sectors-head">
+    <div class="section-label reveal">03 / Target Arenas</div>
+    <h2 class="display reveal d1">Seven arenas,<br/><em>two mandates.</em></h2>
+  </div>
+
+  <div class="sector-list">
+    <div class="sector-row reveal">
+      <div class="sector-num">[01]</div>
+      <div class="sector-name">Communication, Media, Culture & Tourism</div>
+      <div class="sector-tag growth">Growth</div>
+      <div class="sector-count">CousinED · active portfolio</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[02]</div>
+      <div class="sector-name">Sport, e-Sport & Gaming</div>
+      <div class="sector-tag growth">Growth</div>
+      <div class="sector-count">— scouting</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[03]</div>
+      <div class="sector-name">Insurance & Professional Services</div>
+      <div class="sector-tag growth">Growth</div>
+      <div class="sector-count">— scouting</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[04]</div>
+      <div class="sector-name">Consumer Goods & Retail</div>
+      <div class="sector-tag growth">Growth</div>
+      <div class="sector-count">Yaqteen · active portfolio</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[05]</div>
+      <div class="sector-name">Logistics & Manufacturing</div>
+      <div class="sector-tag">Restructuring</div>
+      <div class="sector-count">— scouting</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[06]</div>
+      <div class="sector-name">Human Capital & Education</div>
+      <div class="sector-tag">Restructuring</div>
+      <div class="sector-count">Tanmia Hub · active portfolio</div>
+    </div>
+    <div class="sector-row reveal">
+      <div class="sector-num">[07]</div>
+      <div class="sector-name">Health & Well-Being</div>
+      <div class="sector-tag">Restructuring</div>
+      <div class="sector-count">Second Step · active portfolio</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOOP ============ -->
+<section class="loop">
+  <div class="loop-head">
+    <div class="section-label reveal" style="color: var(--gold);">04 / Dual-Loop Economics</div>
+    <h2 class="display reveal d1">Capital that <em>compounds</em>.<br/>Overhead that <em>covers itself</em>.</h2>
+  </div>
+
+  <div class="loop-vis">
+    <div class="loop-copy reveal">
+      <h4>← Investment Returns</h4>
+      Operating returns from subsidiaries cover overheads, allowing Auzua to patiently wait for maximum investment returns upon exit. Left loop: patience. Right loop: provision.
+    </div>
+
+    <div class="loop-core reveal d1">
+      <div class="loop-core-badge">
+        <div class="ar">مجموعة عزوة</div>
+        <div class="name">AUZUA</div>
+        <div class="sub">Holding Group</div>
+      </div>
+      <div class="loop-arrow">Capital Injection</div>
+      <div class="loop-subs">
+        <div class="loop-sub">
+          <div class="loop-sub-name">Auzua</div>
+          <div class="loop-sub-cat">Consulting</div>
+          <div class="loop-sub-status live">● Live</div>
+        </div>
+        <div class="loop-sub">
+          <div class="loop-sub-name">Auzua</div>
+          <div class="loop-sub-cat">Technologies</div>
+          <div class="loop-sub-status soon">⧗ 2026</div>
+        </div>
+        <div class="loop-sub">
+          <div class="loop-sub-name">Auzua</div>
+          <div class="loop-sub-cat">Real Estate</div>
+          <div class="loop-sub-status soon">⧗ 2026</div>
+        </div>
+        <div class="loop-sub">
+          <div class="loop-sub-name">Auzua</div>
+          <div class="loop-sub-cat">Capital</div>
+          <div class="loop-sub-status soon">⧗ 2028</div>
+        </div>
+      </div>
+      <div class="loop-arrow">Capital & Operational ↓</div>
+    </div>
+
+    <div class="loop-copy reveal d2" style="text-align:right;">
+      <h4>Operating Returns →</h4>
+      We deploy operational capital — services, technology and real-estate — alongside cash, instantly converting startup cost centres into Group assets.
+    </div>
+  </div>
+
+  <div class="loop-target reveal">
+    <strong>Target Scope</strong>
+    The ecosystem is engineered to anchor SMEs specifically <span>from Inception to Series A</span> — de-risking the most vulnerable phase of the Valley of Death.
+  </div>
+</section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section class="gov">
+  <div class="gov-head">
+    <div class="reveal">
+      <div class="section-label">05 / Governance</div>
+      <h2 class="display">Rules that protect<br/><em>everyone</em> — including<br/>the founder.</h2>
+    </div>
+    <p class="gov-intro reveal d2">
+      Institutional safeguards that turn entrepreneurial instinct into reliable economic output. Kill-gates, maturity vesting, related-party firewalls — all engineered before the first riyal is deployed.
+    </p>
+  </div>
+
+  <div class="gov-stack">
+    <div class="gov-item reveal">
+      <div class="gov-item-num">01</div>
+      <div class="gov-item-title">
+        <small>Core Engine</small>
+        Maturity-Based Vesting
+      </div>
+      <div class="gov-item-body">
+        <strong>Performance over tenure.</strong> Founders do not earn equity based on the calendar — they earn it based on maturity stages: revenue and funding milestones. Prevents the "dead equity" cap tables that sink future rounds.
+      </div>
+    </div>
+
+    <div class="gov-item reveal">
+      <div class="gov-item-num">02</div>
+      <div class="gov-item-title">
+        <small>Core Engine</small>
+        Kill-Gate Financial Brake
+      </div>
+      <div class="gov-item-body">
+        <strong>Automated capital protection.</strong> Disbursement auto-stops if break-even cannot be reached within cumulative injection of SAR 4M. Losses are capped by design — zombie ventures are eliminated at the contract layer, not the board meeting.
+      </div>
+    </div>
+
+    <div class="gov-item reveal">
+      <div class="gov-item-num">03</div>
+      <div class="gov-item-title">
+        <small>Safeguard</small>
+        Unified Representation
+      </div>
+      <div class="gov-item-body">
+        <strong>Clean cap tables by mandate.</strong> Auzua acts as the sole legal representative for all early-stage investors — guaranteeing clean cap tables and preventing the fragmentation paralysis that blocks IPOs and major exits.
+      </div>
+    </div>
+
+    <div class="gov-item reveal">
+      <div class="gov-item-num">04</div>
+      <div class="gov-item-title">
+        <small>Safeguard</small>
+        Related-Party Firewall
+      </div>
+      <div class="gov-item-body">
+        <strong>No leakage into side businesses.</strong> An automatic shareholder veto triggers on any related-party contract exceeding 15% margin or 9% revenue — capital goes to growth, not cousin-ventures.
+      </div>
+    </div>
+
+    <div class="gov-item reveal">
+      <div class="gov-item-num">05</div>
+      <div class="gov-item-title">
+        <small>Safeguard</small>
+        Binary Leaver Provisions
+      </div>
+      <div class="gov-item-body">
+        <strong>Focus, enforced financially.</strong> Bad leavers (early exit or breach) are bought out at SAR 1 par value; only good leavers receive fair market value. Early withdrawal becomes economically irrational — by design.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-head">
+    <div class="reveal">
+      <div class="section-label">06 / Portfolio</div>
+      <h2 class="display">Four ventures.<br/><em>Four frictions, solved.</em></h2>
+    </div>
+    <div class="portfolio-count reveal d2">— Current Active Portfolio / 04 Ventures</div>
+  </div>
+
+  <div class="port-grid">
+    <div class="port-card reveal">
+      <div class="port-viz pv-cousin">
+        <div class="port-logo">
+          C<span style="color:#36b5b5">●</span>USIN<span style="color:#36b5b5">E</span>D
+          <small>Content · Digital Media</small>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-sector">Communication · Media</div>
+        <div class="port-text">
+          <strong>The friction.</strong>
+          Regional marketing spend is an untrackable sunk cost driven by vanity metrics — unit economics collapse.
+        </div>
+        <div class="port-text">
+          <strong>The solution.</strong>
+          Transforms digital media into a measurable financial asset. Systematically optimises CAC for scaling businesses.
+        </div>
+      </div>
+    </div>
+
+    <div class="port-card reveal d1">
+      <div class="port-viz pv-step">
+        <div class="port-logo">
+          SECOND STEP
+          <small>Medical Devices Distribution</small>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-sector">Health & Well-Being</div>
+        <div class="port-text">
+          <strong>The friction.</strong>
+          Fragmented supply chains, high import friction, no localised operational capacity in the KSA medical-device sector.
+        </div>
+        <div class="port-text">
+          <strong>The solution.</strong>
+          An institutional landing base for global healthcare IP — localising distribution, transferring knowledge.
+        </div>
+      </div>
+    </div>
+
+    <div class="port-card reveal d2">
+      <div class="port-viz pv-yaqteen">
+        <div class="port-logo" style="color:#fff;">
+          YAQTEEN
+          <small>Technologies</small>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-sector">Consumer Goods & Retail</div>
+        <div class="port-text">
+          <strong>The friction.</strong>
+          Consumer retail supply chains drown in demand volatility — dead inventory and margin erosion follow.
+        </div>
+        <div class="port-text">
+          <strong>The solution.</strong>
+          Yaqteen digitises predictive consumer planning through "Janeia" — volatility becomes stable, zero-waste data.
+        </div>
+      </div>
+    </div>
+
+    <div class="port-card reveal d3">
+      <div class="port-viz pv-hub">
+        <div class="port-logo">
+          TANMIA HUB
+          <small>محور تنمية الأعمال</small>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-sector">Human Capital</div>
+        <div class="port-text">
+          <strong>The friction.</strong>
+          High-potential SMEs hit an execution ceiling — margins collapse under the weight of ad-hoc operations.
+        </div>
+        <div class="port-text">
+          <strong>The solution.</strong>
+          Managed off-shored resources re-engineer ad-hoc processes into scalable organisational infrastructure.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div class="section-label reveal" style="justify-content:center;">— Forge with us —</div>
+    <h2 class="display reveal d1">
+      Let's build the<br/><em>next one</em> together.
+    </h2>
+    <p class="reveal d2">
+      Whether you're founding the next institutional SME in the Kingdom — or placing patient capital behind those who are — start a conversation.
+    </p>
+    <a href="mailto:hello@auzua.com" class="btn-pill reveal d3">
+      Begin a dialogue
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Auzua<em style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--gold);font-variation-settings:'opsz' 144;">.</em></div>
+      <div class="footer-brand-ar">مجموعة عزوة الدعم القابضة</div>
+      <p class="footer-brand-tag">The Kingdom's scalable SME foundry — forging the future of businesses.</p>
+    </div>
+    <div>
+      <h5>Subsidiaries</h5>
+      <ul>
+        <li>Auzua Consulting</li>
+        <li>Auzua Technologies</li>
+        <li>Auzua Real Estate</li>
+        <li>Auzua Capital</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Portfolio</h5>
+      <ul>
+        <li>CousinED</li>
+        <li>Second Step</li>
+        <li>Yaqteen</li>
+        <li>Tanmia Hub</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="#">LinkedIn ↗</a></li>
+        <li><a href="mailto:hello@auzua.com">hello@auzua.com</a></li>
+        <li>Jeddah · KSA</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Auzua Holding Group</div>
+    <div>Institutional Venture Building · KSA</div>
+    <div>v2.0 — Forged with intention</div>
+  </div>
+</footer>
+
+<script>
+  /* ----- Scroll progress bar ----- */
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
+  }, { passive: true });
+
+  /* ----- Custom cursor ----- */
+  const cursor = document.getElementById('cursor');
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cx += (mx - cx) * 0.22;
+    cy += (my - cy) * 0.22;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a, button, .tile, .port-card, .sector-row, .gov-item, .loop-sub').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  /* ----- Hero glow follows mouse ----- */
+  const heroGlow = document.getElementById('heroGlow');
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  - 0.5) * 120;
+    const y = ((e.clientY - r.top)  / r.height - 0.5) * 120;
+    heroGlow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+  });
+
+  /* ----- Reveal on scroll ----- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
