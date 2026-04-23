@@ -6,7 +6,7 @@
 <title>Auzua Forging institutional SMEs.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
   /* ====================================================================
      AUZUA Modern landing page
@@ -175,7 +175,7 @@
   }
 
   /* ====================================================================
-     HERO — simple, gradient background
+     HERO - simple, gradient background
   ==================================================================== */
   .hero {
     min-height: 100vh;
@@ -1458,6 +1458,128 @@
   .reveal.d4 { transition-delay: 0.4s; }
   .reveal.d5 { transition-delay: 0.5s; }
 
+  /* ====================================================================
+     LANGUAGE TOGGLE
+  ==================================================================== */
+  .lang-toggle {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    padding: 0.45rem 1.1rem;
+    border-radius: 99px;
+    font-family: 'Tajawal', 'Inter', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .lang-toggle:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  @media (max-width: 800px) {
+    .lang-toggle { padding: 0.35rem 0.8rem; font-size: 0.72rem; }
+  }
+
+  /* ====================================================================
+     RTL / ARABIC OVERRIDES
+  ==================================================================== */
+  body.rtl {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+  }
+  body.rtl .display,
+  body.rtl .display-narrow {
+    font-family: 'Tajawal', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+  body.rtl .hero-headline {
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+  body.rtl .hero-headline em {
+    font-family: 'Tajawal', sans-serif;
+  }
+  body.rtl .italic-serif,
+  body.rtl .logo-mark,
+  body.rtl .hero-lede,
+  body.rtl .mandate-copy,
+  body.rtl .mandate h2,
+  body.rtl .mandate h2 em,
+  body.rtl .metric-row-label span,
+  body.rtl .metric-row-value,
+  body.rtl .tile h3,
+  body.rtl .tile p,
+  body.rtl .tile-letter,
+  body.rtl .tile-metric,
+  body.rtl .sector-name,
+  body.rtl .thesis-quote,
+  body.rtl .thesis-quote .pill,
+  body.rtl .thesis-meta p,
+  body.rtl .framework-intro,
+  body.rtl .framework h2 em,
+  body.rtl .sectors h2 em,
+  body.rtl .loop-copy,
+  body.rtl .loop-copy h4,
+  body.rtl .loop-core-badge .ar,
+  body.rtl .loop-core-badge .name,
+  body.rtl .loop-sub-name,
+  body.rtl .loop-target,
+  body.rtl .loop-target strong,
+  body.rtl .loop h2 em,
+  body.rtl .gov h2 em,
+  body.rtl .gov-intro,
+  body.rtl .gov-item-num,
+  body.rtl .gov-item-title,
+  body.rtl .gov-item-body,
+  body.rtl .port-logo,
+  body.rtl .port-text,
+  body.rtl .portfolio h2 em,
+  body.rtl .cta h2 em,
+  body.rtl .cta p,
+  body.rtl .btn-pill,
+  body.rtl .footer-brand-name,
+  body.rtl .footer-brand-ar,
+  body.rtl .footer-brand-tag,
+  body.rtl nav ul a,
+  body.rtl .nav-cta {
+    font-family: 'Tajawal', sans-serif;
+  }
+  body.rtl .mono,
+  body.rtl .section-label,
+  body.rtl .metric-row-label,
+  body.rtl .tile-num,
+  body.rtl .tile-metric small,
+  body.rtl .sector-num,
+  body.rtl .sector-tag,
+  body.rtl .sector-count,
+  body.rtl .loop-core-badge .sub,
+  body.rtl .loop-sub-cat,
+  body.rtl .loop-sub-status,
+  body.rtl .loop-arrow,
+  body.rtl .thesis-meta h4,
+  body.rtl .gov-item-title small,
+  body.rtl .portfolio-count,
+  body.rtl .port-sector,
+  body.rtl .port-logo small,
+  body.rtl footer h5,
+  body.rtl .footer-bottom {
+    font-family: 'Tajawal', sans-serif;
+  }
+  body.rtl .thesis-quote { line-height: 1.25; }
+  body.rtl .marquee-track { animation-direction: reverse; }
+  body.rtl .section-label::before { margin-left: 0.8rem; margin-right: 0; }
+  body.rtl .marquee-item { letter-spacing: 0; }
+  body.rtl .marquee-item.italic { letter-spacing: 0; }
+  body.rtl .sector-row:hover { padding-left: 0; padding-right: 2rem; }
+  body.rtl .sector-row::before { left: auto; right: 0; }
+  body.rtl .tile.t5 { direction: rtl; }
+  body.rtl .footer-brand-name { letter-spacing: 0; }
+
 </style>
 </head>
 <body>
@@ -1475,10 +1597,11 @@
     </div>
   </div>
   <ul>
-    <li><a href="#mandate">Mandate</a></li>
+    <li><a href="#mandate">Strategy</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact" class="nav-cta">Start a dialogue ↗</a></li>
+    <li><button class="lang-toggle" id="langToggle" onclick="switchLang()">عربي</button></li>
   </ul>
 </nav>
 
@@ -1492,7 +1615,7 @@
       <span class="line line-2"><span>of businesses.</span></span>
     </h1>
     <p class="hero-lede">
-      Industrializing entrepreneurial opportunities into de-risked institutional assets, from inception through Series A.
+      Building institutional-grade companies from inception, deploying our own capital and capabilities alongside founders, from first concept through Series A.
     </p>
     <div class="scroll-ind">
       <span class="mono">Scroll</span>
@@ -1532,7 +1655,7 @@
 <!-- ============ MANDATE ============ -->
 <section class="mandate" id="mandate">
   <div class="container">
-    <div class="section-label reveal">01 / Mandate</div>
+    <div class="section-label reveal">01 / Strategy</div>
 
     <div class="mandate-grid">
       <div class="reveal">
@@ -1542,7 +1665,7 @@
           <span style="display:block; color:var(--taupe);">Engineered,<br/>not inherited.</span>
         </h2>
         <p class="mandate-copy">
-          Saudi Arabia must grow SME GDP from 29% to 45% by 2035 to match OECD averages a $355 Bn gap that cannot be closed by bootstrapped gambles. It requires institutional engineering. That mandate is Auzua's addressable arena.
+          Saudi Arabia must grow SME GDP from 29% to 45% by 2035 to match OECD averages, a $355 Bn gap that cannot be closed by bootstrapped gambles. It requires institutional engineering. That is Auzua's operating arena.
         </p>
       </div>
 
@@ -1583,7 +1706,7 @@
 <!-- ============ THESIS ============ -->
 <section class="thesis">
   <p class="thesis-quote reveal">
-    We don't find founders. <em>We forge them.</em> Auzua industrializes entrepreneurial opportunities through institutional governance converting high-potential concepts into <span class="pill">De-risked Assets</span> ready for corporate acquisition.
+    We don't find founders. <em>We forge them.</em> Auzua builds companies from the inside, deploying its own capital, operations, and governance alongside founders. We convert high-potential concepts into <span class="pill">De-risked Ventures</span> positioned for corporate acquisition or strategic growth.
   </p>
 
   <div class="thesis-meta">
@@ -1596,8 +1719,8 @@
       <p>Kinship-grade backing that wards off risk, transforming the toll of innovation into a resilient economy.</p>
     </div>
     <div class="reveal d3">
-      <h4>Window</h4>
-      <p>Active deployment from Research through Series A TRL 4 to TRL 6 is our sweet spot.</p>
+      <h4>Scope</h4>
+      <p>We engage from inception through Series A, TRL 4 to TRL 6 is our sweet spot.</p>
     </div>
   </div>
 </section>
@@ -1610,7 +1733,7 @@
       <h2 class="display">Five letters.<br/><em>One machine.</em></h2>
     </div>
     <p class="framework-intro reveal d2">
-      The AUZUA framework isn't a tagline it's a set of defensible operating constraints with real metrics. Adaptive allocation, ultra-early entry, zero-leakage governance, unbreakable revenue, and an allied capability stack.
+      The AUZUA framework isn't a tagline, it's a set of defensible operating constraints with real metrics. Adaptive strategy, ultra-early entry, zero-leakage governance, unbreakable revenue, and an allied capability stack.
     </p>
   </div>
 
@@ -1621,12 +1744,12 @@
         <div class="tile-num">01 · Allocation</div>
       </div>
       <div>
-        <h3>Adaptive Allocation</h3>
-        <p>Capital is re-weighted annually across seven target arenas continuously optimising the match between mandate, market and moment. No static sector bets.</p>
+        <h3>Adaptive Strategy</h3>
+        <p>Auzua reviews its own deployment focus annually across seven sectors, continuously matching our capabilities to market opportunity. No static sector bets.</p>
       </div>
       <div class="tile-metric">
         7
-        <small>Target Arenas</small>
+        <small>Focus Sectors</small>
       </div>
     </div>
 
@@ -1636,12 +1759,8 @@
         <div class="tile-num">02 · Upside</div>
       </div>
       <div>
-        <h3>Ultra-early Upside</h3>
-        <p>Steepest potential value captured from inception through Series A.</p>
-      </div>
-      <div class="tile-metric">
-        10×
-        <small>Winner Multiple</small>
+        <h3>Ultra-early Entry</h3>
+        <p>We enter at the steepest point of the value curve, from inception through Series A, building enterprise value that compounds over time.</p>
       </div>
     </div>
 
@@ -1666,7 +1785,7 @@
       </div>
       <div>
         <h3>Unbreakable Revenue Spine</h3>
-        <p>HQ economics are self-funded by mid-lifecycle patience engineered, not inherited.</p>
+        <p>HQ economics are self-funded by mid-lifecycle. Patience engineered, not inherited.</p>
       </div>
       <div class="tile-metric">
         +$5M
@@ -1679,11 +1798,11 @@
       <div>
         <div class="tile-num" style="margin-bottom:0.8rem;">05 · Capability</div>
         <h3>Allied Capability Stack</h3>
-        <p>50+ years of aggregated board pedigree across venture, operations and capital overhead scales sub-linearly with NAV tiers.</p>
+        <p>50+ years of aggregated board pedigree across venture, operations and capital. Overhead scales sub-linearly with Group asset tiers.</p>
       </div>
       <div class="tile-metric">
         &lt;1.5%
-        <small>NAV : Overhead</small>
+        <small>Group Assets : Overhead</small>
       </div>
     </div>
   </div>
@@ -1692,8 +1811,8 @@
 <!-- ============ SECTORS ============ -->
 <section class="sectors">
   <div class="sectors-head">
-    <div class="section-label reveal">03 / Target Arenas</div>
-    <h2 class="display reveal d1">Seven arenas,<br/><em>two mandates.</em></h2>
+    <div class="section-label reveal">03 / Focus Areas</div>
+    <h2 class="display reveal d1">Seven sectors,<br/><em>two strategic orientations.</em></h2>
   </div>
 
   <div class="sector-list">
@@ -1746,13 +1865,13 @@
 <section class="loop">
   <div class="loop-head">
     <div class="section-label reveal" style="color: var(--gold);">04 / Dual-Loop Economics</div>
-    <h2 class="display reveal d1">Capital that <em>compounds</em>.<br/>Overhead that <em>covers itself</em>.</h2>
+    <h2 class="display reveal d1">Value that <em>compounds</em>.<br/>Overhead that <em>covers itself</em>.</h2>
   </div>
 
   <div class="loop-vis">
     <div class="loop-copy reveal">
-      <h4>← Investment Returns</h4>
-      Operating returns from subsidiaries cover overheads, allowing Auzua to patiently wait for maximum investment returns upon exit. Left loop: patience. Right loop: provision.
+      <h4>← Subsidiary Returns</h4>
+      Operating returns from subsidiaries cover Group overheads, allowing Auzua to build patiently and grow long-term enterprise value. Left loop: patience. Right loop: provision.
     </div>
 
     <div class="loop-core reveal d1">
@@ -1761,7 +1880,7 @@
         <div class="name">AUZUA</div>
         <div class="sub">Holding Group</div>
       </div>
-      <div class="loop-arrow">Capital Injection</div>
+      <div class="loop-arrow">Resource Deployment</div>
       <div class="loop-subs">
         <div class="loop-sub">
           <div class="loop-sub-name">Auzua</div>
@@ -1784,18 +1903,18 @@
           <div class="loop-sub-status soon">⧗ 2028</div>
         </div>
       </div>
-      <div class="loop-arrow">Capital & Operational ↓</div>
+      <div class="loop-arrow">Resources & Operational ↓</div>
     </div>
 
     <div class="loop-copy reveal d2" style="text-align:right;">
       <h4>Operating Returns →</h4>
-      We deploy operational capital services, technology and real-estate alongside cash, instantly converting startup cost centres into Group assets.
+      We commit our own resources, services, technology, and real estate alongside capital, converting startup cost centres into Group-owned operations.
     </div>
   </div>
 
   <div class="loop-target reveal">
     <strong>Target Scope</strong>
-    The ecosystem is engineered to anchor SMEs specifically <span>from Inception to Series A</span> de-risking the most vulnerable phase of the Valley of Death.
+    The Group is engineered to anchor SMEs specifically <span>from Inception to Series A</span>, de-risking the most vulnerable phase of the valley of death.
   </div>
 </section>
 
@@ -1807,7 +1926,7 @@
       <h2 class="display">Rules that protect<br/><em>everyone</em> including<br/>the founder.</h2>
     </div>
     <p class="gov-intro reveal d2">
-      Institutional safeguards that turn entrepreneurial instinct into reliable economic output. Kill-gates, maturity vesting, related-party firewalls all engineered before the first riyal is deployed.
+      Institutional safeguards that turn entrepreneurial instinct into reliable economic output. Kill-gates, maturity vesting, related-party firewalls, all engineered before the first riyal is deployed.
     </p>
   </div>
 
@@ -1819,7 +1938,7 @@
         Maturity-Based Vesting
       </div>
       <div class="gov-item-body">
-        <strong>Performance over tenure.</strong> Founders do not earn equity based on the calendar they earn it based on maturity stages: revenue and funding milestones. Prevents the "dead equity" cap tables that sink future rounds.
+        <strong>Performance over tenure.</strong> Founders do not earn equity based on the calendar, they earn it based on maturity stages: revenue and funding milestones. Prevents "dead equity" cap tables that sink future rounds.
       </div>
     </div>
 
@@ -1838,10 +1957,10 @@
       <div class="gov-item-num">03</div>
       <div class="gov-item-title">
         <small>Safeguard</small>
-        Unified Representation
+        Unified Equity Position
       </div>
       <div class="gov-item-body">
-        <strong>Clean cap tables by mandate.</strong> Auzua acts as the sole legal representative for all early-stage investors guaranteeing clean cap tables and preventing the fragmentation paralysis that blocks IPOs and major exits.
+        <strong>Clean cap tables by design.</strong> Auzua holds a consolidated equity position from day one, guaranteeing clean cap tables and preventing the ownership fragmentation that blocks future rounds and major exits.
       </div>
     </div>
 
@@ -1852,7 +1971,7 @@
         Related-Party Firewall
       </div>
       <div class="gov-item-body">
-        <strong>No leakage into side businesses.</strong> An automatic shareholder veto triggers on any related-party contract exceeding 15% margin or 9% revenue capital goes to growth, not cousin-ventures.
+        <strong>No leakage into side businesses.</strong> An automatic shareholder veto triggers on any related-party contract exceeding 15% margin or 9% revenue, capital goes to growth, not affiliate ventures.
       </div>
     </div>
 
@@ -1891,11 +2010,11 @@
         <div class="port-sector">Communication · Media</div>
         <div class="port-text">
           <strong>The friction.</strong>
-          Regional marketing spend is an untrackable sunk cost driven by vanity metrics unit economics collapse.
+          Regional marketing spend is an untrackable sunk cost driven by vanity metrics, unit economics collapse.
         </div>
         <div class="port-text">
           <strong>The solution.</strong>
-          Transforms digital media into a measurable financial asset. Systematically optimises CAC for scaling businesses.
+          Transforms digital media into a measurable financial asset. Systematically optimises customer acquisition cost for scaling businesses.
         </div>
       </div>
     </div>
@@ -1970,9 +2089,9 @@
       Let's build the<br/><em>next one</em> together.
     </h2>
     <p class="reveal d2">
-      Whether you're founding the next institutional SME in the Kingdom or placing patient capital behind those who are start a conversation.
+      Whether you're founding the next institutional SME in the Kingdom, or you're an operator ready to build with institutional backing, start a conversation.
     </p>
-    <a href="mailto:hello@auzua.com" class="btn-pill reveal d3">
+    <a href="mailto:info@auzuaholding.com" class="btn-pill reveal d3">
       Begin a dialogue
       <span class="arrow">→</span>
     </a>
@@ -2006,8 +2125,8 @@
     <div>
       <h5>Connect</h5>
       <ul>
-        <li><a href="#">LinkedIn ↗</a></li>
-        <li><a href="mailto:hello@auzua.com">hello@auzua.com</a></li>
+        <li><a href="https://www.linkedin.com/company/auzua-holding-group/" target="_blank">LinkedIn ↗</a></li>
+        <li><a href="mailto:info@auzuaholding.com">info@auzuaholding.com</a></li>
         <li>Jeddah · KSA</li>
       </ul>
     </div>
@@ -2064,6 +2183,420 @@
     });
   }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ================================================================
+     BILINGUAL SYSTEM - English / Arabic
+  ================================================================ */
+  let currentLang = localStorage.getItem('auzua-lang') || 'en';
+
+  function switchLang(toLang) {
+    if (toLang === undefined) toLang = currentLang === 'en' ? 'ar' : 'en';
+    currentLang = toLang;
+    localStorage.setItem('auzua-lang', toLang);
+    const isAr = toLang === 'ar';
+
+    document.documentElement.lang = isAr ? 'ar' : 'en';
+    document.documentElement.dir  = isAr ? 'rtl' : 'ltr';
+    document.body.classList.toggle('rtl', isAr);
+
+    document.getElementById('langToggle').textContent = isAr ? 'English' : 'عربي';
+
+    const t = isAr ? AR : EN;
+    applyTranslations(t);
+  }
+
+  function applyTranslations(t) {
+    /* NAV */
+    const navLinks = document.querySelectorAll('nav ul li a');
+    if (navLinks[0]) navLinks[0].textContent = t.navStrategy;
+    if (navLinks[1]) navLinks[1].textContent = t.navFramework;
+    if (navLinks[2]) navLinks[2].textContent = t.navPortfolio;
+    const navCta = document.querySelector('.nav-cta');
+    if (navCta) navCta.textContent = t.navCta;
+
+    /* HERO */
+    const hl = document.querySelector('.hero-headline');
+    if (hl) hl.innerHTML = t.heroHeadline;
+    const hlede = document.querySelector('.hero-lede');
+    if (hlede) hlede.textContent = t.heroLede;
+    const scrollLabel = document.querySelector('.scroll-ind .mono');
+    if (scrollLabel) scrollLabel.textContent = t.heroScroll;
+
+    /* MARQUEE */
+    const mItems = document.querySelectorAll('.marquee-item');
+    const mMap = [t.mq1,null,t.mq2,null,t.mq3,null,t.mq4,null,t.mq5,null];
+    mItems.forEach((el, i) => {
+      const idx = i % 10;
+      if (mMap[idx] !== null) el.textContent = mMap[idx];
+    });
+
+    /* STRATEGY / MANDATE */
+    s('.mandate .section-label', t.mandateLabel);
+    const mandateH2 = document.querySelector('.mandate h2');
+    if (mandateH2) mandateH2.innerHTML = t.mandateH2;
+    s('.mandate-copy', t.mandateBody);
+
+    const mRows = document.querySelectorAll('.metric-row');
+    if (mRows[0]) mRows[0].querySelector('.metric-row-label').innerHTML = t.stat1;
+    if (mRows[1]) mRows[1].querySelector('.metric-row-label').innerHTML = t.stat2;
+    if (mRows[2]) mRows[2].querySelector('.metric-row-label').innerHTML = t.stat3;
+    if (mRows[3]) mRows[3].querySelector('.metric-row-label').innerHTML = t.stat4;
+
+    /* THESIS */
+    const tq = document.querySelector('.thesis-quote');
+    if (tq) tq.innerHTML = t.thesisQuote;
+    const tMeta = document.querySelectorAll('.thesis-meta > div');
+    if (tMeta[0]) { tMeta[0].querySelector('h4').textContent = t.thesisVisionT; tMeta[0].querySelector('p').textContent = t.thesisVisionB; }
+    if (tMeta[1]) { tMeta[1].querySelector('h4').textContent = t.thesisMissionT; tMeta[1].querySelector('p').textContent = t.thesisMissionB; }
+    if (tMeta[2]) { tMeta[2].querySelector('h4').textContent = t.thesisScopeT; tMeta[2].querySelector('p').textContent = t.thesisScopeB; }
+
+    /* FRAMEWORK */
+    s('.framework .section-label', t.fwLabel);
+    const fwH2 = document.querySelector('.framework h2');
+    if (fwH2) fwH2.innerHTML = t.fwH2;
+    s('.framework-intro', t.fwIntro);
+
+    /* Tiles */
+    tileSet('.tile.t1', t.tA);
+    tileSet('.tile.t2', t.tU);
+    tileSet('.tile.t3', t.tZ);
+    tileSet('.tile.t4', t.tU2);
+    /* t5 has different structure */
+    const t5 = document.querySelector('.tile.t5');
+    if (t5) {
+      const t5letter = t5.querySelector('.tile-letter');
+      if (t5letter && t.tA2.letter) t5letter.textContent = t.tA2.letter;
+      const t5num = t5.querySelector('.tile-num');
+      if (t5num) t5num.textContent = t.tA2.num;
+      const t5h3 = t5.querySelector('h3');
+      if (t5h3) t5h3.textContent = t.tA2.name;
+      const t5p = t5.querySelector('p');
+      if (t5p) t5p.textContent = t.tA2.body;
+      const t5m = t5.querySelector('.tile-metric');
+      if (t5m) t5m.innerHTML = t.tA2.metric;
+    }
+
+    /* SECTORS */
+    s('.sectors .section-label', t.secLabel);
+    const secH2 = document.querySelector('.sectors h2');
+    if (secH2) secH2.innerHTML = t.secH2;
+    const sRows = document.querySelectorAll('.sector-row');
+    t.sectors.forEach((sec, i) => {
+      if (!sRows[i]) return;
+      sRows[i].querySelector('.sector-name').textContent = sec.name;
+      sRows[i].querySelector('.sector-tag').textContent = sec.tag;
+      sRows[i].querySelector('.sector-count').textContent = sec.count;
+    });
+
+    /* LOOP */
+    s('.loop .section-label', t.loopLabel);
+    const loopH2 = document.querySelector('.loop h2');
+    if (loopH2) loopH2.innerHTML = t.loopH2;
+    const loopCopies = document.querySelectorAll('.loop-copy');
+    if (loopCopies[0]) loopCopies[0].innerHTML = t.loopLeft;
+    if (loopCopies[1]) loopCopies[1].innerHTML = t.loopRight;
+    const badge = document.querySelector('.loop-core-badge');
+    if (badge) {
+      badge.querySelector('.ar').textContent = t.loopBadgeAr;
+      badge.querySelector('.name').textContent = t.loopBadgeName;
+      badge.querySelector('.sub').textContent = t.loopBadgeSub;
+    }
+    const arrows = document.querySelectorAll('.loop-arrow');
+    if (arrows[0]) arrows[0].textContent = t.loopFlow1;
+    if (arrows[1]) arrows[1].textContent = t.loopFlow2;
+    const lSubs = document.querySelectorAll('.loop-sub');
+    t.loopSubs.forEach((sub, i) => {
+      if (!lSubs[i]) return;
+      lSubs[i].querySelector('.loop-sub-name').textContent = sub.name;
+      lSubs[i].querySelector('.loop-sub-cat').textContent = sub.cat;
+    });
+    const loopTarget = document.querySelector('.loop-target');
+    if (loopTarget) loopTarget.innerHTML = t.loopTarget;
+
+    /* GOVERNANCE */
+    s('.gov .section-label', t.govLabel);
+    const govH2 = document.querySelector('.gov h2');
+    if (govH2) govH2.innerHTML = t.govH2;
+    s('.gov-intro', t.govIntro);
+    const govItems = document.querySelectorAll('.gov-item');
+    t.govItems.forEach((g, i) => {
+      if (!govItems[i]) return;
+      govItems[i].querySelector('.gov-item-title').innerHTML = g.title;
+      govItems[i].querySelector('.gov-item-body').innerHTML = g.body;
+    });
+
+    /* PORTFOLIO */
+    s('.portfolio .section-label', t.portLabel);
+    const portH2 = document.querySelector('.portfolio h2');
+    if (portH2) portH2.innerHTML = t.portH2;
+    s('.portfolio-count', t.portCount);
+    const cards = document.querySelectorAll('.port-card');
+    t.portCards.forEach((c, i) => {
+      if (!cards[i]) return;
+      const logo = cards[i].querySelector('.port-logo');
+      if (c.logoSmall) {
+        const sm = logo.querySelector('small');
+        if (sm) sm.textContent = c.logoSmall;
+        /* For text-only logos, set the text node */
+        if (c.logoText !== undefined) {
+          const firstText = logo.childNodes[0];
+          if (firstText && firstText.nodeType === 3) firstText.textContent = c.logoText;
+          else if (firstText && firstText.nodeType === 1 && firstText.tagName !== 'SMALL' && firstText.tagName !== 'IMG') firstText.textContent = c.logoText;
+        }
+      }
+      cards[i].querySelector('.port-sector').textContent = c.sector;
+      const texts = cards[i].querySelectorAll('.port-text');
+      if (texts[0]) texts[0].innerHTML = c.friction;
+      if (texts[1]) texts[1].innerHTML = c.solution;
+    });
+
+    /* CTA */
+    s('.cta .section-label', t.ctaLabel);
+    const ctaH2 = document.querySelector('.cta h2');
+    if (ctaH2) ctaH2.innerHTML = t.ctaH2;
+    const ctaP = document.querySelector('.cta p');
+    if (ctaP) ctaP.textContent = t.ctaBody;
+    const ctaBtn = document.querySelector('.btn-pill');
+    if (ctaBtn) {
+      const arrow = ctaBtn.querySelector('.arrow');
+      ctaBtn.textContent = t.ctaBtn + ' ';
+      ctaBtn.appendChild(arrow);
+    }
+
+    /* FOOTER */
+    const fCols = document.querySelectorAll('.footer-top > div');
+    if (fCols[1]) {
+      fCols[1].querySelector('h5').textContent = t.footerSubsTitle;
+      const lis = fCols[1].querySelectorAll('li');
+      t.footerSubs.forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; });
+    }
+    if (fCols[2]) {
+      fCols[2].querySelector('h5').textContent = t.footerPortTitle;
+      const lis = fCols[2].querySelectorAll('li');
+      t.footerPort.forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; });
+    }
+    if (fCols[3]) {
+      fCols[3].querySelector('h5').textContent = t.footerConnTitle;
+      const lis = fCols[3].querySelectorAll('li');
+      if (lis[0]) lis[0].innerHTML = '<a href="https://www.linkedin.com/company/auzua-holding-group/" target="_blank">' + t.footerConn1 + '</a>';
+      if (lis[1]) lis[1].innerHTML = '<a href="mailto:info@auzuaholding.com">' + t.footerConn2 + '</a>';
+      if (lis[2]) lis[2].textContent = t.footerConn3;
+    }
+    const fBot = document.querySelectorAll('.footer-bottom > div');
+    if (fBot[0]) fBot[0].textContent = t.footerCopy;
+    if (fBot[1]) fBot[1].textContent = t.footerTag;
+  }
+
+  /* helpers */
+  function s(sel, text) {
+    const el = document.querySelector(sel);
+    if (el) el.textContent = text;
+  }
+  function tileSet(sel, d) {
+    const tile = document.querySelector(sel);
+    if (!tile) return;
+    const letter = tile.querySelector('.tile-letter');
+    if (letter && d.letter) letter.textContent = d.letter;
+    const num = tile.querySelector('.tile-num');
+    if (num) num.textContent = d.num;
+    const h3 = tile.querySelector('h3');
+    if (h3) h3.textContent = d.name;
+    const p = tile.querySelector('p');
+    if (p) p.textContent = d.body;
+    const m = tile.querySelector('.tile-metric');
+    if (m && d.metric) m.innerHTML = d.metric;
+  }
+
+  /* ---- ENGLISH ---- */
+  const EN = {
+    navStrategy: 'Strategy', navFramework: 'Framework', navPortfolio: 'Portfolio',
+    navCta: 'Start a dialogue \u2197',
+    heroHeadline: '<span class="line line-1"><span>Forging <em>the future</em></span></span><span class="line line-2"><span>of businesses.</span></span>',
+    heroLede: 'Building institutional-grade companies from inception, deploying our own capital and capabilities alongside founders, from first concept through Series A.',
+    heroScroll: 'Scroll',
+    mq1: 'Scalable SME Foundry', mq2: 'Forging the future of businesses',
+    mq3: 'Institutional Venture Building', mq4: 'Inception \u2192 Series A',
+    mq5: 'Kingdom of Saudi Arabia',
+    mandateLabel: '01 / Strategy',
+    mandateH2: 'A <em>$610 Bn</em><br/>opportunity.<br/><span style="display:block; color:var(--taupe);">Engineered,<br/>not inherited.</span>',
+    mandateBody: 'Saudi Arabia must grow SME GDP from 29% to 45% by 2035 to match OECD averages, a $355 Bn gap that cannot be closed by bootstrapped gambles. It requires institutional engineering. That is Auzua\u2019s operating arena.',
+    stat1: '2024 Actuals<span>SME GDP contribution</span>',
+    stat2: '2030 Vision Target<span>SME GDP contribution</span>',
+    stat3: '2035 OECD Benchmark<span>SME GDP contribution</span>',
+    stat4: '11-Year CAGR<span>Required growth trajectory</span>',
+    thesisQuote: 'We don\u2019t find founders. <em>We forge them.</em> Auzua builds companies from the inside, deploying its own capital, operations, and governance alongside founders. We convert high-potential concepts into <span class="pill">De-risked Ventures</span> positioned for corporate acquisition or strategic growth.',
+    thesisVisionT: 'Vision', thesisVisionB: 'Premier foundry for the Saudi real economy, forging the industrial and commercial backbone of the region.',
+    thesisMissionT: 'Mission', thesisMissionB: 'Kinship-grade backing that wards off risk, transforming the toll of innovation into a resilient economy.',
+    thesisScopeT: 'Scope', thesisScopeB: 'We engage from inception through Series A, TRL 4 to TRL 6 is our sweet spot.',
+    fwLabel: '02 / The Operating Model',
+    fwH2: 'Five letters.<br/><em>One machine.</em>',
+    fwIntro: 'The AUZUA framework isn\u2019t a tagline, it\u2019s a set of defensible operating constraints with real metrics. Adaptive strategy, ultra-early entry, zero-leakage governance, unbreakable revenue, and an allied capability stack.',
+    tA: { letter: 'A', num: '01 \u00b7 Allocation', name: 'Adaptive Strategy', body: 'Auzua reviews its own deployment focus annually across seven sectors, continuously matching our capabilities to market opportunity. No static sector bets.', metric: '7<small>Focus Sectors</small>' },
+    tU: { letter: 'U', num: '02 \u00b7 Upside', name: 'Ultra-early Entry', body: 'We enter at the steepest point of the value curve, from inception through Series A, building enterprise value that compounds over time.', metric: null },
+    tZ: { letter: 'Z', num: '03 \u00b7 Governance', name: 'Zero-leakage Governance', body: '', metric: '&lt;1.5\u00d7<small>Burn Multiple</small>' },
+    tU2: { letter: 'U', num: '04 \u00b7 Revenue', name: 'Unbreakable Revenue Spine', body: 'HQ economics are self-funded by mid-lifecycle. Patience engineered, not inherited.', metric: '+$5M<small>Annual Service Revenue</small>' },
+    tA2: { letter: 'A', num: '05 \u00b7 Capability', name: 'Allied Capability Stack', body: '50+ years of aggregated board pedigree across venture, operations and capital. Overhead scales sub-linearly with Group asset tiers.', metric: '&lt;1.5%<small>Group Assets : Overhead</small>' },
+    secLabel: '03 / Focus Areas',
+    secH2: 'Seven sectors,<br/><em>two strategic orientations.</em>',
+    sectors: [
+      { name: 'Communication, Media, Culture & Tourism', tag: 'Growth', count: 'CousinED \u00b7 active portfolio' },
+      { name: 'Sport, e-Sport & Gaming', tag: 'Growth', count: 'Scouting' },
+      { name: 'Insurance & Professional Services', tag: 'Growth', count: 'Scouting' },
+      { name: 'Consumer Goods & Retail', tag: 'Growth', count: 'Yaqteen \u00b7 active portfolio' },
+      { name: 'Logistics & Manufacturing', tag: 'Restructuring', count: 'Scouting' },
+      { name: 'Human Capital & Education', tag: 'Restructuring', count: 'Tanmia Hub \u00b7 active portfolio' },
+      { name: 'Health & Well-Being', tag: 'Restructuring', count: 'Second Step \u00b7 active portfolio' }
+    ],
+    loopLabel: '04 / Dual-Loop Economics',
+    loopH2: 'Value that <em>compounds</em>.<br/>Overhead that <em>covers itself</em>.',
+    loopLeft: '<h4>\u2190 Subsidiary Returns</h4>Operating returns from subsidiaries cover Group overheads, allowing Auzua to build patiently and grow long-term enterprise value. Left loop: patience. Right loop: provision.',
+    loopRight: '<h4>Operating Returns \u2192</h4>We commit our own resources, services, technology, and real estate alongside capital, converting startup cost centres into Group-owned operations.',
+    loopBadgeAr: '\u0645\u062c\u0645\u0648\u0639\u0629 \u0639\u0632\u0648\u0629', loopBadgeName: 'AUZUA', loopBadgeSub: 'Holding Group',
+    loopFlow1: 'Resource Deployment', loopFlow2: 'Resources & Operational \u2193',
+    loopSubs: [
+      { name: 'Auzua', cat: 'Consulting' },
+      { name: 'Auzua', cat: 'Technologies' },
+      { name: 'Auzua', cat: 'Real Estate' },
+      { name: 'Auzua', cat: 'Capital' }
+    ],
+    loopTarget: '<strong>Target Scope</strong>The Group is engineered to anchor SMEs specifically <span>from Inception to Series A</span>, de-risking the most vulnerable phase of the valley of death.',
+    govLabel: '05 / Governance',
+    govH2: 'Rules that protect<br/><em>everyone</em>, including<br/>the founder.',
+    govIntro: 'Institutional safeguards that turn entrepreneurial instinct into reliable economic output. Kill-gates, maturity vesting, related-party firewalls, all engineered before the first riyal is deployed.',
+    govItems: [
+      { title: '<small>Core Engine</small>Maturity-Based Vesting', body: '<strong>Performance over tenure.</strong> Founders do not earn equity based on the calendar, they earn it based on maturity stages: revenue and funding milestones. Prevents \u201cdead equity\u201d cap tables that sink future rounds.' },
+      { title: '<small>Core Engine</small>Kill-Gate Financial Brake', body: '<strong>Automated capital protection.</strong> Disbursement auto-stops if break-even cannot be reached within cumulative injection of SAR 4M. Losses are capped by design, zombie ventures are eliminated at the contract layer, not the board meeting.' },
+      { title: '<small>Safeguard</small>Unified Equity Position', body: '<strong>Clean cap tables by design.</strong> Auzua holds a consolidated equity position from day one, guaranteeing clean cap tables and preventing the ownership fragmentation that blocks future rounds and major exits.' },
+      { title: '<small>Safeguard</small>Related-Party Firewall', body: '<strong>No leakage into side businesses.</strong> An automatic shareholder veto triggers on any related-party contract exceeding 15% margin or 9% revenue, capital goes to growth, not affiliate ventures.' },
+      { title: '<small>Safeguard</small>Binary Leaver Provisions', body: '<strong>Focus, enforced financially.</strong> Bad leavers (early exit or breach) are bought out at SAR 1 par value; only good leavers receive fair market value. Early withdrawal becomes economically irrational by design.' }
+    ],
+    portLabel: '06 / Portfolio',
+    portH2: 'Four ventures.<br/><em>Four frictions, solved.</em>',
+    portCount: 'Current Active Portfolio / 04 Ventures',
+    portCards: [
+      { logoSmall: 'Content \u00b7 Digital Media', sector: 'Communication \u00b7 Media',
+        friction: '<strong>The friction.</strong> Regional marketing spend is an untrackable sunk cost driven by vanity metrics, unit economics collapse.',
+        solution: '<strong>The solution.</strong> Transforms digital media into a measurable financial asset. Systematically optimises customer acquisition cost for scaling businesses.' },
+      { logoText: '\n          SECOND STEP\n          ', logoSmall: 'Medical Devices Distribution', sector: 'Health & Well-Being',
+        friction: '<strong>The friction.</strong> Fragmented supply chains, high import friction, no localised operational capacity in the KSA medical-device sector.',
+        solution: '<strong>The solution.</strong> An institutional landing base for global healthcare IP, localising distribution, transferring knowledge.' },
+      { logoText: '\n          YAQTEEN\n          ', logoSmall: 'Technologies', sector: 'Consumer Goods & Retail',
+        friction: '<strong>The friction.</strong> Consumer retail supply chains drown in demand volatility, dead inventory and margin erosion follow.',
+        solution: '<strong>The solution.</strong> Yaqteen digitises predictive consumer planning through \u201cJaneia\u201d, volatility becomes stable, zero-waste data.' },
+      { logoText: '\n          TANMIA HUB\n          ', logoSmall: '\u0645\u062d\u0648\u0631 \u062a\u0646\u0645\u064a\u0629 \u0627\u0644\u0623\u0639\u0645\u0627\u0644', sector: 'Human Capital',
+        friction: '<strong>The friction.</strong> High-potential SMEs hit an execution ceiling, margins collapse under the weight of ad-hoc operations.',
+        solution: '<strong>The solution.</strong> Managed off-shored resources re-engineer ad-hoc processes into scalable organisational infrastructure.' }
+    ],
+    ctaLabel: 'Forge with us',
+    ctaH2: 'Let\u2019s build the<br/><em>next one</em> together.',
+    ctaBody: 'Whether you\u2019re founding the next institutional SME in the Kingdom, or you\u2019re an operator ready to build with institutional backing, start a conversation.',
+    ctaBtn: 'Begin a dialogue',
+    footerSubsTitle: 'Subsidiaries', footerSubs: ['Auzua Consulting','Auzua Technologies','Auzua Real Estate','Auzua Capital'],
+    footerPortTitle: 'Portfolio', footerPort: ['CousinED','Second Step','Yaqteen','Tanmia Hub'],
+    footerConnTitle: 'Connect', footerConn1: 'LinkedIn \u2197', footerConn2: 'info@auzuaholding.com', footerConn3: 'Jeddah \u00b7 KSA',
+    footerCopy: '\u00a9 2026 Auzua Holding Group', footerTag: 'Institutional Venture Building \u00b7 KSA'
+  };
+
+  /* ---- ARABIC ---- */
+  const AR = {
+    navStrategy: '\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u062a\u0646\u0627', navFramework: '\u0625\u0637\u0627\u0631\u0646\u0627 \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a', navPortfolio: '\u0645\u062d\u0641\u0638\u062a\u0646\u0627',
+    navCta: '\u0627\u0628\u062f\u0623 \u062d\u0648\u0627\u0631\u0627\u064b \u2197',
+    heroHeadline: '<span class="line line-1"><span>\u0646\u0635\u0646\u0639 <em>\u0645\u0633\u062a\u0642\u0628\u0644</em></span></span><span class="line line-2"><span>\u0627\u0644\u0623\u0639\u0645\u0627\u0644.</span></span>',
+    heroLede: '\u0646\u0628\u0646\u064a \u0634\u0631\u0643\u0627\u062a \u0628\u0645\u0639\u0627\u064a\u064a\u0631 \u0645\u0624\u0633\u0633\u064a\u0629 \u0645\u0646 \u0627\u0644\u0635\u0641\u0631,\u0646\u0636\u062e\u0651 \u0631\u0623\u0633 \u0645\u0627\u0644\u0646\u0627 \u0627\u0644\u062e\u0627\u0635 \u0648\u0642\u062f\u0631\u0627\u062a\u0646\u0627 \u062c\u0646\u0628\u0627\u064b \u0625\u0644\u0649 \u062c\u0646\u0628 \u0645\u0639 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0646\u060c \u0645\u0646 \u0627\u0644\u0641\u0643\u0631\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u062d\u062a\u0649 \u062c\u0648\u0644\u0629 \u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0623\u0648\u0644\u0649.',
+    heroScroll: '\u062a\u0645\u0631\u064a\u0631',
+    mq1: '\u0645\u0635\u0646\u0639 \u0623\u0639\u0645\u0627\u0644 \u0635\u063a\u064a\u0631\u0629 \u0648\u0645\u062a\u0648\u0633\u0637\u0629 \u0642\u0627\u0628\u0644 \u0644\u0644\u062a\u0648\u0633\u0639',
+    mq2: '\u0646\u0635\u0646\u0639 \u0645\u0633\u062a\u0642\u0628\u0644 \u0627\u0644\u0623\u0639\u0645\u0627\u0644',
+    mq3: '\u0628\u0646\u0627\u0621 \u0645\u0634\u0627\u0631\u064a\u0639 \u0645\u0624\u0633\u0633\u064a\u0629',
+    mq4: '\u0645\u0646 \u0627\u0644\u062a\u0623\u0633\u064a\u0633 \u062d\u062a\u0649 \u0627\u0644\u062c\u0648\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u0649',
+    mq5: '\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629',
+    mandateLabel: '01 / \u0627\u0644\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0629',
+    mandateH2: '<em>610 \u0645\u0644\u064a\u0627\u0631 \u062f\u0648\u0644\u0627\u0631</em><br/>\u0641\u0631\u0635\u0629.<br/><span style="display:block; color:var(--taupe);">\u0645\u064f\u0647\u064e\u0646\u062f\u064e\u0633\u064e\u0629\u060c<br/>\u0644\u0627 \u0645\u0648\u0631\u0648\u062b\u0629.</span>',
+    mandateBody: '\u062a\u062d\u062a\u0627\u062c \u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629 \u0625\u0644\u0649 \u0631\u0641\u0639 \u0645\u0633\u0627\u0647\u0645\u0629 \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0627\u0644\u0635\u063a\u064a\u0631\u0629 \u0648\u0627\u0644\u0645\u062a\u0648\u0633\u0637\u0629 \u0641\u064a \u0627\u0644\u0646\u0627\u062a\u062c \u0627\u0644\u0645\u062d\u0644\u064a \u0645\u0646 29% \u0625\u0644\u0649 45% \u0628\u062d\u0644\u0648\u0644 \u0639\u0627\u0645 2035,\u0641\u062c\u0648\u0629 355 \u0645\u0644\u064a\u0627\u0631 \u062f\u0648\u0644\u0627\u0631 \u0644\u0627 \u064a\u0645\u0643\u0646 \u0633\u062f\u0651\u0647\u0627 \u0628\u0627\u0644\u0631\u0647\u0627\u0646\u0627\u062a \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a\u0629. \u0628\u0644 \u062a\u0633\u062a\u0648\u062c\u0628 \u0647\u0646\u062f\u0633\u0629 \u0645\u0624\u0633\u0633\u064a\u0629 \u062d\u0642\u064a\u0642\u064a\u0629. \u0647\u0630\u0647 \u0647\u064a \u0633\u0627\u062d\u0629 \u0639\u0645\u0644 \u0639\u0632\u0648\u0629.',
+    stat1: '\u0627\u0644\u0641\u0639\u0644\u064a 2024<span>\u062d\u0635\u0629 \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0641\u064a \u0627\u0644\u0646\u0627\u062a\u062c \u0627\u0644\u0645\u062d\u0644\u064a</span>',
+    stat2: '\u0647\u062f\u0641 \u0631\u0624\u064a\u0629 2030<span>\u062d\u0635\u0629 \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0641\u064a \u0627\u0644\u0646\u0627\u062a\u062c \u0627\u0644\u0645\u062d\u0644\u064a</span>',
+    stat3: '\u0627\u0644\u0645\u0639\u064a\u0627\u0631 \u0627\u0644\u062f\u0648\u0644\u064a 2035 (OECD)<span>\u062d\u0635\u0629 \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0641\u064a \u0627\u0644\u0646\u0627\u062a\u062c \u0627\u0644\u0645\u062d\u0644\u064a</span>',
+    stat4: '\u0645\u0639\u062f\u0644 \u0627\u0644\u0646\u0645\u0648 \u0627\u0644\u0633\u0646\u0648\u064a \u0627\u0644\u0645\u0631\u0643\u0628 \u0644\u0640 11 \u0639\u0627\u0645\u0627\u064b<span>\u0645\u0633\u0627\u0631 \u0627\u0644\u0646\u0645\u0648 \u0627\u0644\u0645\u0637\u0644\u0648\u0628</span>',
+    thesisQuote: '\u0644\u0627 \u0646\u0628\u062d\u062b \u0639\u0646 \u0645\u0624\u0633\u0633\u064a\u0646. <em>\u0646\u0635\u0646\u0639\u0647\u0645.</em> \u062a\u0628\u0646\u064a \u0639\u0632\u0648\u0629 \u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0645\u0646 \u0627\u0644\u062f\u0627\u062e\u0644,\u0625\u0630 \u062a\u0636\u062e\u0651 \u0631\u0623\u0633 \u0645\u0627\u0644\u0647\u0627 \u0627\u0644\u062e\u0627\u0635 \u0648\u0639\u0645\u0644\u064a\u0627\u062a\u0647\u0627 \u0648\u062d\u0648\u0643\u0645\u062a\u0647\u0627 \u062c\u0646\u0628\u0627\u064b \u0625\u0644\u0649 \u062c\u0646\u0628 \u0645\u0639 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0646. \u0646\u062d\u0648\u0651\u0644 \u0627\u0644\u0645\u0641\u0627\u0647\u064a\u0645 \u0639\u0627\u0644\u064a\u0629 \u0627\u0644\u0625\u0645\u0643\u0627\u0646\u0627\u062a \u0625\u0644\u0649 <span class="pill">\u0623\u0639\u0645\u0627\u0644 \u0645\u064f\u062e\u0641\u0651\u064e\u0641\u064e\u0629 \u0627\u0644\u0645\u062e\u0627\u0637\u0631</span> \u0645\u0647\u064a\u0651\u0623\u0629 \u0644\u0644\u0627\u0633\u062a\u062d\u0648\u0627\u0630 \u0627\u0644\u0645\u0624\u0633\u0633\u064a \u0623\u0648 \u0627\u0644\u0646\u0645\u0648 \u0627\u0644\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a.',
+    thesisVisionT: '\u0627\u0644\u0631\u0624\u064a\u0629', thesisVisionB: '\u0645\u0635\u0646\u0639 \u0631\u0627\u0626\u062f \u0644\u0644\u0627\u0642\u062a\u0635\u0627\u062f \u0627\u0644\u062d\u0642\u064a\u0642\u064a \u0641\u064a \u0627\u0644\u0645\u0645\u0644\u0643\u0629\u060c \u064a\u0635\u0646\u0639 \u0627\u0644\u0631\u0643\u064a\u0632\u0629 \u0627\u0644\u0635\u0646\u0627\u0639\u064a\u0629 \u0648\u0627\u0644\u062a\u062c\u0627\u0631\u064a\u0629 \u0644\u0644\u0645\u0646\u0637\u0642\u0629.',
+    thesisMissionT: '\u0627\u0644\u0631\u0633\u0627\u0644\u0629', thesisMissionB: '\u062f\u0639\u0645 \u0628\u0645\u0633\u062a\u0648\u0649 \u0627\u0644\u0631\u0641\u0642\u0629 \u0627\u0644\u062d\u0642\u064a\u0642\u064a\u0629 \u0644\u0627\u062d\u062a\u0648\u0627\u0621 \u0627\u0644\u0645\u062e\u0627\u0637\u0631\u060c \u0648\u062a\u062d\u0648\u064a\u0644 \u062a\u0643\u0627\u0644\u064a\u0641 \u0627\u0644\u0627\u0628\u062a\u0643\u0627\u0631 \u0625\u0644\u0649 \u0627\u0642\u062a\u0635\u0627\u062f \u0635\u0644\u0628 \u0648\u0645\u062a\u064a\u0646.',
+    thesisScopeT: '\u0627\u0644\u0646\u0637\u0627\u0642', thesisScopeB: '\u0646\u062a\u062f\u062e\u0644 \u0645\u0646 \u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u062a\u0623\u0633\u064a\u0633 \u062d\u062a\u0649 \u062c\u0648\u0644\u0629 \u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0623\u0648\u0644\u0649,\u0645\u0633\u062a\u0648\u064a\u0627\u062a \u0627\u0644\u062c\u0627\u0647\u0632\u064a\u0629 \u0627\u0644\u062a\u0642\u0646\u064a\u0629 \u0645\u0646 4 \u0625\u0644\u0649 6 \u0647\u064a \u0645\u0646\u0637\u0642\u062a\u0646\u0627 \u0627\u0644\u0645\u062b\u0644\u0649.',
+    fwLabel: '02 / \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a',
+    fwH2: '\u062e\u0645\u0633\u0629 \u0623\u062d\u0631\u0641.<br/><em>\u0622\u0644\u0629 \u0648\u0627\u062d\u062f\u0629.</em>',
+    fwIntro: '\u0625\u0637\u0627\u0631 AUZUA \u0644\u064a\u0633 \u0634\u0639\u0627\u0631\u0627\u064b,\u0628\u0644 \u0645\u062c\u0645\u0648\u0639\u0629 \u0645\u0646 \u0627\u0644\u0636\u0648\u0627\u0628\u0637 \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629 \u0627\u0644\u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062f\u0641\u0627\u0639\u060c \u0645\u062f\u0639\u0648\u0645\u0629 \u0628\u0645\u0642\u0627\u064a\u064a\u0633 \u062d\u0642\u064a\u0642\u064a\u0629. \u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0629 \u062a\u0643\u064a\u0651\u0641\u064a\u0629\u060c \u0648\u062f\u062e\u0648\u0644 \u0645\u0628\u0643\u0651\u0631 \u062c\u062f\u0627\u064b\u060c \u0648\u062d\u0648\u0643\u0645\u0629 \u0635\u0641\u0631\u064a\u0629 \u0627\u0644\u062a\u0633\u0631\u0628\u060c \u0648\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u0645\u062a\u064a\u0646\u0629\u060c \u0648\u0645\u0646\u0638\u0648\u0645\u0629 \u0642\u062f\u0631\u0627\u062a \u062d\u0644\u064a\u0641\u0629.',
+    tA: { letter: '\u0623', num: '01 \u00b7 \u0627\u0644\u062a\u062e\u0635\u064a\u0635', name: '\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0629 \u062a\u0643\u064a\u0651\u0641\u064a\u0629', body: '\u062a\u0633\u062a\u0639\u0631\u0636 \u0639\u0632\u0648\u0629 \u0623\u0648\u0644\u0648\u064a\u0627\u062a\u0647\u0627 \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629 \u0633\u0646\u0648\u064a\u0627\u064b \u0639\u0628\u0631 \u0633\u0628\u0639\u0629 \u0642\u0637\u0627\u0639\u0627\u062a\u060c \u0645\u0648\u0627\u0621\u0645\u0629\u064b \u0642\u062f\u0631\u0627\u062a\u0647\u0627 \u0645\u0639 \u0627\u0644\u0641\u0631\u0635 \u0627\u0644\u0633\u0648\u0642\u064a\u0629 \u0628\u0627\u0633\u062a\u0645\u0631\u0627\u0631. \u0644\u0627 \u0631\u0647\u0627\u0646\u0627\u062a \u0642\u0637\u0627\u0639\u064a\u0629 \u062b\u0627\u0628\u062a\u0629.', metric: '7<small>\u0642\u0637\u0627\u0639\u0627\u062a \u0645\u062d\u0648\u0631\u064a\u0629</small>' },
+    tU: { letter: '\u0639', num: '02 \u00b7 \u0627\u0644\u0642\u064a\u0645\u0629', name: '\u062f\u062e\u0648\u0644 \u0645\u0628\u0643\u0651\u0631 \u062c\u062f\u0627\u064b', body: '\u0646\u062f\u062e\u0644 \u0639\u0646\u062f \u0623\u062d\u062f\u0651 \u0646\u0642\u0627\u0637 \u0645\u0646\u062d\u0646\u0649 \u0627\u0644\u0642\u064a\u0645\u0629\u060c \u0645\u0646 \u0627\u0644\u062a\u0623\u0633\u064a\u0633 \u062d\u062a\u0649 \u0627\u0644\u062c\u0648\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u0649\u060c \u0646\u0628\u0646\u064a \u0642\u064a\u0645\u0629 \u0645\u0624\u0633\u0633\u064a\u0629 \u062a\u062a\u0631\u0627\u0643\u0645 \u0645\u0639 \u0627\u0644\u0648\u0642\u062a.', metric: null },
+    tZ: { letter: '\u0632', num: '03 \u00b7 \u0627\u0644\u062d\u0648\u0643\u0645\u0629', name: '\u062d\u0648\u0643\u0645\u0629 \u0635\u0641\u0631\u064a\u0629 \u0627\u0644\u062a\u0633\u0631\u0628', body: '', metric: '&lt;1.5\u00d7<small>\u0645\u0639\u062f\u0644 \u0627\u0644\u062d\u0631\u0642</small>' },
+    tU2: { letter: '\u0648', num: '04 \u00b7 \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a', name: '\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u0645\u062a\u064a\u0646\u0629 \u0644\u0627 \u062a\u0646\u0643\u0633\u0631', body: '\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0627\u062a \u0627\u0644\u0645\u0642\u0631 \u062a\u0645\u0648\u0651\u0644 \u0646\u0641\u0633\u0647\u0627 \u0628\u062d\u0644\u0648\u0644 \u0645\u0646\u062a\u0635\u0641 \u0627\u0644\u062f\u0648\u0631\u0629. \u0627\u0644\u0635\u0628\u0631 \u0645\u064f\u0647\u064e\u0646\u062f\u064e\u0633\u060c \u0644\u0627 \u0645\u0648\u0631\u0648\u062b.', metric: '+5\u0645$<small>\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u062e\u062f\u0645\u0627\u062a \u0633\u0646\u0648\u064a\u0629</small>' },
+    tA2: { letter: '\u0627', num: '05 \u00b7 \u0627\u0644\u0642\u062f\u0631\u0627\u062a', name: '\u0645\u0646\u0638\u0648\u0645\u0629 \u0642\u062f\u0631\u0627\u062a \u062d\u0644\u064a\u0641\u0629', body: '\u0623\u0643\u062b\u0631 \u0645\u0646 50 \u0639\u0627\u0645\u0627\u064b \u0645\u0646 \u0627\u0644\u062e\u0628\u0631\u0629 \u0627\u0644\u0645\u062c\u0645\u0651\u0639\u0629 \u0639\u0644\u0649 \u0645\u0633\u062a\u0648\u0649 \u0645\u062c\u0627\u0644\u0633 \u0627\u0644\u0625\u062f\u0627\u0631\u0629 \u0641\u064a \u0627\u0644\u0645\u0634\u0627\u0631\u064a\u0639 \u0648\u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u0648\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644. \u062a\u062a\u0648\u0633\u0651\u0639 \u062a\u0643\u0627\u0644\u064a\u0641 \u0627\u0644\u0645\u0642\u0631 \u0628\u0634\u0643\u0644 \u0623\u0628\u0637\u0623 \u0645\u0646 \u0646\u0645\u0648 \u0623\u0635\u0648\u0644 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629.', metric: '&lt;1.5%<small>\u0623\u0635\u0648\u0644 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 : \u0627\u0644\u062a\u0643\u0627\u0644\u064a\u0641 \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629</small>' },
+    secLabel: '03 / \u0627\u0644\u0642\u0637\u0627\u0639\u0627\u062a \u0627\u0644\u0645\u062d\u0648\u0631\u064a\u0629',
+    secH2: '\u0633\u0628\u0639\u0629 \u0642\u0637\u0627\u0639\u0627\u062a.<br/><em>\u062a\u0648\u062c\u0647\u0627\u0646 \u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0627\u0646.</em>',
+    sectors: [
+      { name: '\u0627\u0644\u0627\u062a\u0635\u0627\u0644\u0627\u062a \u0648\u0627\u0644\u0625\u0639\u0644\u0627\u0645 \u0648\u0627\u0644\u062b\u0642\u0627\u0641\u0629 \u0648\u0627\u0644\u0633\u064a\u0627\u062d\u0629', tag: '\u0646\u0645\u0648', count: 'CousinED \u00b7 \u0646\u0634\u0637' },
+      { name: '\u0627\u0644\u0631\u064a\u0627\u0636\u0629 \u0648\u0627\u0644\u0631\u064a\u0627\u0636\u0629 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0629 \u0648\u0627\u0644\u0623\u0644\u0639\u0627\u0628', tag: '\u0646\u0645\u0648', count: '\u0627\u0633\u062a\u0637\u0644\u0627\u0639' },
+      { name: '\u0627\u0644\u062a\u0623\u0645\u064a\u0646 \u0648\u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u0645\u0647\u0646\u064a\u0629', tag: '\u0646\u0645\u0648', count: '\u0627\u0633\u062a\u0637\u0644\u0627\u0639' },
+      { name: '\u0627\u0644\u0633\u0644\u0639 \u0627\u0644\u0627\u0633\u062a\u0647\u0644\u0627\u0643\u064a\u0629 \u0648\u0627\u0644\u062a\u062c\u0632\u0626\u0629', tag: '\u0646\u0645\u0648', count: '\u064a\u0642\u0637\u064a\u0646 \u00b7 \u0646\u0634\u0637' },
+      { name: '\u0627\u0644\u0644\u0648\u062c\u0633\u062a\u064a\u0627\u062a \u0648\u0627\u0644\u062a\u0635\u0646\u064a\u0639', tag: '\u0625\u0639\u0627\u062f\u0629 \u0647\u064a\u0643\u0644\u0629', count: '\u0627\u0633\u062a\u0637\u0644\u0627\u0639' },
+      { name: '\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644 \u0627\u0644\u0628\u0634\u0631\u064a \u0648\u0627\u0644\u062a\u0639\u0644\u064a\u0645', tag: '\u0625\u0639\u0627\u062f\u0629 \u0647\u064a\u0643\u0644\u0629', count: '\u0645\u062d\u0648\u0631 \u062a\u0646\u0645\u064a\u0629 \u00b7 \u0646\u0634\u0637' },
+      { name: '\u0627\u0644\u0635\u062d\u0629 \u0648\u0627\u0644\u0639\u0627\u0641\u064a\u0629', tag: '\u0625\u0639\u0627\u062f\u0629 \u0647\u064a\u0643\u0644\u0629', count: '\u0627\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062b\u0627\u0646\u064a\u0629 \u00b7 \u0646\u0634\u0637' }
+    ],
+    loopLabel: '04 / \u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0627\u062a \u0627\u0644\u062d\u0644\u0642\u0629 \u0627\u0644\u0645\u0632\u062f\u0648\u062c\u0629',
+    loopH2: '\u0642\u064a\u0645\u0629 <em>\u062a\u062a\u0631\u0627\u0643\u0645</em>.<br/>\u062a\u0643\u0627\u0644\u064a\u0641 <em>\u062a\u0645\u0648\u0651\u0644 \u0646\u0641\u0633\u0647\u0627</em>.',
+    loopLeft: '<h4>\u0639\u0648\u0627\u0626\u062f \u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u062a\u0627\u0628\u0639\u0629 \u2190</h4>\u062a\u063a\u0637\u064a \u0627\u0644\u0639\u0627\u0626\u062f\u0627\u062a \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629 \u0645\u0646 \u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u062a\u0627\u0628\u0639\u0629 \u062a\u0643\u0627\u0644\u064a\u0641 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629\u060c \u0645\u0645\u0627 \u064a\u062a\u064a\u062d \u0644\u0639\u0632\u0648\u0629 \u0627\u0644\u0628\u0646\u0627\u0621 \u0628\u0623\u0646\u0627\u0629 \u0648\u062a\u0646\u0645\u064a\u0629 \u0627\u0644\u0642\u064a\u0645\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u062f\u0649 \u0627\u0644\u0637\u0648\u064a\u0644. \u0627\u0644\u062d\u0644\u0642\u0629 \u0627\u0644\u064a\u0633\u0631\u0649: \u0627\u0644\u0635\u0628\u0631. \u0627\u0644\u062d\u0644\u0642\u0629 \u0627\u0644\u064a\u0645\u0646\u0649: \u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0630\u0627\u062a\u064a.',
+    loopRight: '<h4>\u0627\u0644\u0639\u0627\u0626\u062f\u0627\u062a \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629 \u2192</h4>\u0646\u0642\u062f\u0651\u0645 \u0645\u0648\u0627\u0631\u062f\u0646\u0627 \u0627\u0644\u062e\u0627\u0635\u0629,\u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0648\u0627\u0644\u062a\u0642\u0646\u064a\u0629 \u0648\u0627\u0644\u0639\u0642\u0627\u0631\u0627\u062a \u0625\u0644\u0649 \u062c\u0627\u0646\u0628 \u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644,\u0645\u062d\u0648\u0651\u0644\u064a\u0646 \u0645\u0631\u0627\u0643\u0632 \u0627\u0644\u062a\u0643\u0644\u0641\u0629 \u0641\u064a \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0627\u0644\u0646\u0627\u0634\u0626\u0629 \u0625\u0644\u0649 \u0639\u0645\u0644\u064a\u0627\u062a \u0645\u0645\u0644\u0648\u0643\u0629 \u0644\u0644\u0645\u062c\u0645\u0648\u0639\u0629.',
+    loopBadgeAr: '\u0645\u062c\u0645\u0648\u0639\u0629 \u0639\u0632\u0648\u0629', loopBadgeName: '\u0639\u0632\u0648\u0629', loopBadgeSub: '\u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 \u0627\u0644\u0642\u0627\u0628\u0636\u0629',
+    loopFlow1: '\u0646\u0634\u0631 \u0627\u0644\u0645\u0648\u0627\u0631\u062f', loopFlow2: '\u0627\u0644\u0645\u0648\u0627\u0631\u062f \u0648\u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u2193',
+    loopSubs: [
+      { name: '\u0639\u0632\u0648\u0629', cat: '\u0644\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a' },
+      { name: '\u0639\u0632\u0648\u0629', cat: '\u0644\u0644\u062a\u0642\u0646\u064a\u0629' },
+      { name: '\u0639\u0632\u0648\u0629', cat: '\u0644\u0644\u0639\u0642\u0627\u0631\u0627\u062a' },
+      { name: '\u0639\u0632\u0648\u0629', cat: '\u0644\u0644\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644' }
+    ],
+    loopTarget: '<strong>\u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641</strong>\u0635\u064f\u0645\u0650\u0651\u0645\u064e\u062a \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 \u0644\u062a\u0643\u0648\u0646 \u0627\u0644\u0645\u0631\u062a\u0643\u0632 \u0627\u0644\u0623\u0633\u0627\u0633\u064a \u0644\u0644\u0645\u0646\u0634\u0622\u062a \u0627\u0644\u0635\u063a\u064a\u0631\u0629 \u0648\u0627\u0644\u0645\u062a\u0648\u0633\u0637\u0629 <span>\u0645\u0646 \u0627\u0644\u062a\u0623\u0633\u064a\u0633 \u062d\u062a\u0649 \u0627\u0644\u062c\u0648\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u0649</span>,\u0645\u062e\u0641\u0650\u0651\u0641\u0629\u064b \u0645\u062e\u0627\u0637\u0631 \u0623\u0643\u062b\u0631 \u0645\u0631\u0627\u062d\u0644 \u0648\u0627\u062f\u064a \u0627\u0644\u0645\u0648\u062a \u0647\u0634\u0627\u0634\u0629\u064b.',
+    govLabel: '05 / \u0627\u0644\u062d\u0648\u0643\u0645\u0629',
+    govH2: '\u0642\u0648\u0627\u0639\u062f \u062a\u062d\u0645\u064a<br/><em>\u0627\u0644\u062c\u0645\u064a\u0639</em>,<br/>\u0628\u0645\u0627 \u0641\u064a \u0630\u0644\u0643 \u0627\u0644\u0645\u0624\u0633\u0633.',
+    govIntro: '\u0636\u0645\u0627\u0646\u0627\u062a \u0645\u0624\u0633\u0633\u064a\u0629 \u062a\u062d\u0648\u0651\u0644 \u0627\u0644\u062d\u062f\u0633 \u0627\u0644\u0631\u064a\u0627\u062f\u064a \u0625\u0644\u0649 \u0646\u0627\u062a\u062c \u0627\u0642\u062a\u0635\u0627\u062f\u064a \u0645\u0648\u062b\u0648\u0642. \u0628\u0648\u0627\u0628\u0627\u062a \u0627\u0644\u0625\u064a\u0642\u0627\u0641\u060c \u0648\u0627\u0644\u0627\u0633\u062a\u062d\u0642\u0627\u0642 \u0627\u0644\u062a\u062f\u0631\u064a\u062c\u064a\u060c \u0648\u062c\u062f\u0631\u0627\u0646 \u062d\u0645\u0627\u064a\u0629 \u0627\u0644\u0623\u0637\u0631\u0627\u0641 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629,\u0643\u0644\u0647\u0627 \u0645\u064f\u0647\u064e\u0646\u062f\u064e\u0633\u0629 \u0642\u0628\u0644 \u0646\u0634\u0631 \u0623\u0648\u0644 \u0631\u064a\u0627\u0644.',
+    govItems: [
+      { title: '<small>\u0627\u0644\u0645\u062d\u0631\u0643 \u0627\u0644\u0623\u0633\u0627\u0633\u064a</small>\u0627\u0644\u0627\u0633\u062a\u062d\u0642\u0627\u0642 \u0627\u0644\u0642\u0627\u0626\u0645 \u0639\u0644\u0649 \u0627\u0644\u0646\u0636\u062c', body: '<strong>\u0627\u0644\u0623\u062f\u0627\u0621 \u0641\u0648\u0642 \u0627\u0644\u062a\u0642\u0627\u062f\u0645.</strong> \u0644\u0627 \u064a\u0643\u0633\u0628 \u0627\u0644\u0645\u0624\u0633\u0633\u0648\u0646 \u062d\u0635\u0635\u0647\u0645 \u0628\u0645\u0631\u0648\u0631 \u0627\u0644\u0648\u0642\u062a,\u0628\u0644 \u0628\u062a\u062d\u0642\u064a\u0642 \u0645\u0639\u0627\u0644\u0645 \u0627\u0644\u0646\u0636\u062c: \u0645\u0633\u062a\u0647\u062f\u0641\u0627\u062a \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u0648\u0627\u0644\u062a\u0645\u0648\u064a\u0644. \u064a\u0645\u0646\u0639 \u062c\u062f\u0627\u0648\u0644 \u0627\u0644\u062d\u0635\u0635 \u0627\u0644\u0645\u064a\u062a\u0629 \u0627\u0644\u062a\u064a \u062a\u064f\u063a\u0631\u0650\u0642 \u062c\u0648\u0644\u0627\u062a \u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629.' },
+      { title: '<small>\u0627\u0644\u0645\u062d\u0631\u0643 \u0627\u0644\u0623\u0633\u0627\u0633\u064a</small>\u0645\u0643\u0628\u062d \u0645\u0627\u0644\u064a \u0622\u0644\u064a', body: '<strong>\u062d\u0645\u0627\u064a\u0629 \u0622\u0644\u064a\u0629 \u0644\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644.</strong> \u062a\u062a\u0648\u0642\u0641 \u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a \u062a\u0644\u0642\u0627\u0626\u064a\u0627\u064b \u0625\u0630\u0627 \u062a\u0639\u0630\u0651\u0631 \u0628\u0644\u0648\u063a \u0646\u0642\u0637\u0629 \u0627\u0644\u062a\u0639\u0627\u062f\u0644 \u0636\u0645\u0646 \u062d\u0642\u0646 \u062a\u0631\u0627\u0643\u0645\u064a \u0628\u0640 4 \u0645\u0644\u0627\u064a\u064a\u0646 \u0631\u064a\u0627\u0644. \u0627\u0644\u062e\u0633\u0627\u0626\u0631 \u0645\u062d\u062f\u0648\u062f\u0629 \u0628\u0627\u0644\u062a\u0635\u0645\u064a\u0645,\u0627\u0644\u0645\u0634\u0627\u0631\u064a\u0639 \u0627\u0644\u0645\u064a\u062a\u0629 \u062a\u064f\u0633\u062a\u0623\u0635\u0644 \u0639\u0644\u0649 \u0645\u0633\u062a\u0648\u0649 \u0627\u0644\u0639\u0642\u062f\u060c \u0644\u0627 \u0641\u064a \u0627\u062c\u062a\u0645\u0627\u0639 \u0645\u062c\u0644\u0633 \u0627\u0644\u0625\u062f\u0627\u0631\u0629.' },
+      { title: '<small>\u0636\u0645\u0627\u0646</small>\u062d\u0635\u0629 \u0645\u0644\u0643\u064a\u0629 \u0645\u0648\u062d\u0651\u062f\u0629', body: '<strong>\u062c\u062f\u0627\u0648\u0644 \u062d\u0635\u0635 \u0646\u0638\u064a\u0641\u0629 \u0628\u0627\u0644\u062a\u0635\u0645\u064a\u0645.</strong> \u062a\u062d\u062a\u0641\u0638 \u0639\u0632\u0648\u0629 \u0628\u062d\u0635\u0629 \u0645\u0644\u0643\u064a\u0629 \u0645\u0648\u062d\u0651\u062f\u0629 \u0645\u0646 \u0627\u0644\u064a\u0648\u0645 \u0627\u0644\u0623\u0648\u0644\u060c \u0645\u0636\u0645\u0648\u0646\u0629\u064b \u0646\u0638\u0627\u0641\u0629 \u062c\u062f\u0627\u0648\u0644 \u0627\u0644\u062d\u0635\u0635 \u0648\u0645\u0627\u0646\u0639\u0629\u064b \u062a\u0634\u062a\u062a \u0627\u0644\u0645\u0644\u0643\u064a\u0629 \u0627\u0644\u0630\u064a \u064a\u064f\u0639\u064a\u0642 \u062c\u0648\u0644\u0627\u062a \u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629 \u0648\u0627\u0644\u062e\u0631\u0648\u062c\u0627\u062a \u0627\u0644\u0643\u0628\u0631\u0649.' },
+      { title: '<small>\u0636\u0645\u0627\u0646</small>\u062c\u062f\u0627\u0631 \u062d\u0645\u0627\u064a\u0629 \u0627\u0644\u0623\u0637\u0631\u0627\u0641 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629', body: '<strong>\u0644\u0627 \u062a\u0633\u0631\u0651\u0628 \u0644\u0623\u0639\u0645\u0627\u0644 \u062c\u0627\u0646\u0628\u064a\u0629.</strong> \u064a\u064f\u0641\u0639\u0651\u0644 \u062d\u0642 \u0627\u0644\u0646\u0642\u0636 \u0627\u0644\u062a\u0644\u0642\u0627\u0626\u064a \u0644\u0644\u0645\u0633\u0627\u0647\u0645\u064a\u0646 \u0639\u0646\u062f \u0623\u064a \u0639\u0642\u062f \u0645\u0639 \u0623\u0637\u0631\u0627\u0641 \u0630\u0627\u062a \u0635\u0644\u0629 \u064a\u062a\u062c\u0627\u0648\u0632 \u0647\u0627\u0645\u0634 15% \u0623\u0648 9% \u0645\u0646 \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a,\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644 \u064a\u0630\u0647\u0628 \u0644\u0644\u0646\u0645\u0648\u060c \u0644\u0627 \u0644\u0645\u0634\u0627\u0631\u064a\u0639 \u0627\u0644\u0623\u0642\u0627\u0631\u0628.' },
+      { title: '<small>\u0636\u0645\u0627\u0646</small>\u0623\u062d\u0643\u0627\u0645 \u0627\u0644\u0645\u063a\u0627\u062f\u0631\u0629 \u0627\u0644\u062b\u0646\u0627\u0626\u064a\u0629', body: '<strong>\u0627\u0644\u062a\u0631\u0643\u064a\u0632 \u0645\u064f\u0641\u0631\u064e\u0636 \u0645\u0627\u0644\u064a\u0627\u064b.</strong> \u064a\u064f\u0634\u062a\u0631\u0649 \u0627\u0644\u0645\u063a\u0627\u062f\u0631\u0648\u0646 \u0627\u0644\u0636\u0627\u0631\u0651\u0648\u0646 (\u0627\u0644\u0645\u063a\u0627\u062f\u0631\u0629 \u0627\u0644\u0645\u0628\u0643\u0651\u0631\u0629 \u0623\u0648 \u0627\u0644\u0625\u062e\u0644\u0627\u0644 \u0628\u0627\u0644\u0639\u0642\u062f) \u0628\u0642\u064a\u0645\u0629 \u0627\u0633\u0645\u064a\u0629 \u0631\u064a\u0627\u0644 \u0648\u0627\u062d\u062f\u061b \u0627\u0644\u0645\u063a\u0627\u062f\u0631\u0648\u0646 \u0627\u0644\u062d\u0633\u0646\u0648 \u0627\u0644\u0646\u064a\u0629 \u0648\u062d\u062f\u0647\u0645 \u064a\u062d\u0635\u0644\u0648\u0646 \u0639\u0644\u0649 \u0627\u0644\u0642\u064a\u0645\u0629 \u0627\u0644\u0633\u0648\u0642\u064a\u0629 \u0627\u0644\u0639\u0627\u062f\u0644\u0629. \u0627\u0644\u0627\u0646\u0633\u062d\u0627\u0628 \u0627\u0644\u0645\u0628\u0643\u0651\u0631 \u064a\u0635\u0628\u062d \u063a\u064a\u0631 \u0639\u0642\u0644\u0627\u0646\u064a \u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0627\u064b \u0628\u0627\u0644\u062a\u0635\u0645\u064a\u0645.' }
+    ],
+    portLabel: '06 / \u0627\u0644\u0645\u062d\u0641\u0638\u0629',
+    portH2: '\u0623\u0631\u0628\u0639\u0629 \u0645\u0634\u0627\u0631\u064a\u0639.<br/><em>\u0623\u0631\u0628\u0639 \u0639\u0642\u0628\u0627\u062a\u060c \u062a\u0645\u0651 \u062d\u0644\u0651\u0647\u0627.</em>',
+    portCount: '\u0627\u0644\u0645\u062d\u0641\u0638\u0629 \u0627\u0644\u0646\u0634\u0637\u0629 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 / 04 \u0645\u0634\u0627\u0631\u064a\u0639',
+    portCards: [
+      { logoSmall: '\u0627\u0644\u0645\u062d\u062a\u0648\u0649 \u00b7 \u0627\u0644\u0625\u0639\u0644\u0627\u0645 \u0627\u0644\u0631\u0642\u0645\u064a', sector: '\u0627\u0644\u0627\u062a\u0635\u0627\u0644\u0627\u062a \u00b7 \u0627\u0644\u0625\u0639\u0644\u0627\u0645',
+        friction: '<strong>\u0627\u0644\u0627\u062d\u062a\u0643\u0627\u0643.</strong> \u0627\u0644\u0625\u0646\u0641\u0627\u0642 \u0627\u0644\u062a\u0633\u0648\u064a\u0642\u064a \u0627\u0644\u0625\u0642\u0644\u064a\u0645\u064a \u062a\u0643\u0644\u0641\u0629 \u063a\u0627\u0631\u0642\u0629 \u063a\u064a\u0631 \u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062a\u062a\u0628\u0639\u060c \u062a\u062d\u0631\u0643\u0647\u0627 \u0627\u0644\u0645\u0642\u0627\u064a\u064a\u0633 \u0627\u0644\u0648\u0647\u0645\u064a\u0629,\u062a\u0646\u0647\u0627\u0631 \u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0627\u062a \u0627\u0644\u0648\u062d\u062f\u0629.',
+        solution: '<strong>\u0627\u0644\u062d\u0644.</strong> \u064a\u062d\u0648\u0651\u0644 \u0627\u0644\u0625\u0639\u0644\u0627\u0645 \u0627\u0644\u0631\u0642\u0645\u064a \u0625\u0644\u0649 \u0623\u0635\u0644 \u0645\u0627\u0644\u064a \u0642\u0627\u0628\u0644 \u0644\u0644\u0642\u064a\u0627\u0633. \u064a\u064f\u062d\u0633\u0650\u0651\u0646 \u0645\u0646\u0647\u062c\u064a\u0627\u064b \u062a\u0643\u0644\u0641\u0629 \u0627\u0643\u062a\u0633\u0627\u0628 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0644\u062f\u0649 \u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u0646\u0627\u0645\u064a\u0629.' },
+      { logoText: '\n          SECOND STEP\n          ', logoSmall: '\u062a\u0648\u0632\u064a\u0639 \u0627\u0644\u0623\u062c\u0647\u0632\u0629 \u0627\u0644\u0637\u0628\u064a\u0629', sector: '\u0627\u0644\u0635\u062d\u0629 \u0648\u0627\u0644\u0639\u0627\u0641\u064a\u0629',
+        friction: '<strong>\u0627\u0644\u0627\u062d\u062a\u0643\u0627\u0643.</strong> \u0633\u0644\u0627\u0633\u0644 \u062a\u0648\u0631\u064a\u062f \u0645\u062c\u0632\u0651\u0623\u0629\u060c \u0648\u0639\u0648\u0627\u0626\u0642 \u0627\u0633\u062a\u064a\u0631\u0627\u062f \u0645\u0631\u062a\u0641\u0639\u0629\u060c \u0648\u063a\u064a\u0627\u0628 \u0627\u0644\u0642\u062f\u0631\u0629 \u0627\u0644\u062a\u0634\u063a\u064a\u0644\u064a\u0629 \u0627\u0644\u0645\u062d\u0644\u064a\u0629 \u0641\u064a \u0642\u0637\u0627\u0639 \u0627\u0644\u0623\u062c\u0647\u0632\u0629 \u0627\u0644\u0637\u0628\u064a\u0629 \u0628\u0627\u0644\u0645\u0645\u0644\u0643\u0629.',
+        solution: '<strong>\u0627\u0644\u062d\u0644.</strong> \u0642\u0627\u0639\u062f\u0629 \u0645\u0624\u0633\u0633\u064a\u0629 \u0644\u062a\u0648\u0637\u064a\u0646 \u0627\u0644\u0645\u0644\u0643\u064a\u0629 \u0627\u0644\u0641\u0643\u0631\u064a\u0629 \u0627\u0644\u0635\u062d\u064a\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u064a\u0629,\u062a\u0648\u0637\u064a\u0646 \u0627\u0644\u062a\u0648\u0632\u064a\u0639 \u0648\u0646\u0642\u0644 \u0627\u0644\u0645\u0639\u0631\u0641\u0629.' },
+      { logoText: '\n          YAQTEEN\n          ', logoSmall: '\u0644\u0644\u062a\u0642\u0646\u064a\u0629', sector: '\u0627\u0644\u0633\u0644\u0639 \u0627\u0644\u0627\u0633\u062a\u0647\u0644\u0627\u0643\u064a\u0629 \u0648\u0627\u0644\u062a\u062c\u0632\u0626\u0629',
+        friction: '<strong>\u0627\u0644\u0627\u062d\u062a\u0643\u0627\u0643.</strong> \u062a\u063a\u0631\u0642 \u0633\u0644\u0627\u0633\u0644 \u062a\u0648\u0631\u064a\u062f \u0627\u0644\u062a\u062c\u0632\u0626\u0629 \u0641\u064a \u062a\u0642\u0644\u0628\u0627\u062a \u0627\u0644\u0637\u0644\u0628,\u064a\u062a\u0628\u0639\u0647\u0627 \u0645\u062e\u0632\u0648\u0646 \u0645\u064a\u062a \u0648\u062a\u0622\u0643\u0644 \u0627\u0644\u0647\u0648\u0627\u0645\u0634.',
+        solution: '<strong>\u0627\u0644\u062d\u0644.</strong> \u062a\u064f\u0631\u0642\u0645\u0650\u0646 \u064a\u0642\u0637\u064a\u0646 \u0627\u0644\u062a\u062e\u0637\u064a\u0637 \u0627\u0644\u0627\u0633\u062a\u0647\u0644\u0627\u0643\u064a \u0627\u0644\u062a\u0646\u0628\u0624\u064a \u0639\u0628\u0631 \u0645\u0646\u0635\u0629 \u201c\u062c\u0646\u064a\u0629\u201d,\u064a\u062a\u062d\u0648\u0651\u0644 \u0627\u0644\u062a\u0642\u0644\u0651\u0628 \u0625\u0644\u0649 \u0628\u064a\u0627\u0646\u0627\u062a \u0645\u0633\u062a\u0642\u0631\u0629 \u0635\u0641\u0631\u064a\u0629 \u0627\u0644\u0647\u062f\u0631.' },
+      { logoText: '\n          TANMIA HUB\n          ', logoSmall: '\u0645\u062d\u0648\u0631 \u062a\u0646\u0645\u064a\u0629 \u0627\u0644\u0623\u0639\u0645\u0627\u0644', sector: '\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644 \u0627\u0644\u0628\u0634\u0631\u064a',
+        friction: '<strong>\u0627\u0644\u0627\u062d\u062a\u0643\u0627\u0643.</strong> \u062a\u0635\u0637\u062f\u0645 \u0627\u0644\u0645\u0646\u0634\u0622\u062a \u0639\u0627\u0644\u064a\u0629 \u0627\u0644\u0625\u0645\u0643\u0627\u0646\u0627\u062a \u0628\u0633\u0642\u0641 \u062a\u0646\u0641\u064a\u0630\u064a,\u062a\u0646\u0647\u0627\u0631 \u0627\u0644\u0647\u0648\u0627\u0645\u0634 \u062a\u062d\u062a \u0648\u0637\u0623\u0629 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a\u0629.',
+        solution: '<strong>\u0627\u0644\u062d\u0644.</strong> \u0627\u0644\u0645\u0648\u0627\u0631\u062f \u0627\u0644\u0645\u064f\u062f\u0627\u0631\u0629 \u0639\u0646 \u0628\u064f\u0639\u062f \u062a\u064f\u0639\u064a\u062f \u0647\u0646\u062f\u0633\u0629 \u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a\u0629 \u0625\u0644\u0649 \u0628\u0646\u064a\u0629 \u062a\u0646\u0638\u064a\u0645\u064a\u0629 \u0642\u0627\u0628\u0644\u0629 \u0644\u0644\u062a\u0648\u0633\u0639.' }
+    ],
+    ctaLabel: '\u0627\u0635\u0646\u0639 \u0645\u0639\u0646\u0627',
+    ctaH2: '\u0644\u0646\u0628\u0646\u0650 <em>\u0627\u0644\u0642\u0627\u062f\u0645</em><br/>\u0645\u0639\u0627\u064b.',
+    ctaBody: '\u0633\u0648\u0627\u0621 \u0643\u0646\u062a \u062a\u0624\u0633\u0651\u0633 \u0627\u0644\u0645\u0646\u0634\u0623\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0629 \u0627\u0644\u0635\u063a\u064a\u0631\u0629 \u0648\u0627\u0644\u0645\u062a\u0648\u0633\u0637\u0629 \u0627\u0644\u0642\u0627\u062f\u0645\u0629 \u0641\u064a \u0627\u0644\u0645\u0645\u0644\u0643\u0629\u060c \u0623\u0648 \u0643\u0646\u062a \u0631\u0627\u0626\u062f \u0623\u0639\u0645\u0627\u0644 \u0645\u0633\u062a\u0639\u062f\u0627\u064b \u0644\u0644\u0628\u0646\u0627\u0621 \u0628\u062f\u0639\u0645 \u0645\u0624\u0633\u0633\u064a,\u0627\u0628\u062f\u0623 \u062d\u0648\u0627\u0631\u0627\u064b.',
+    ctaBtn: '\u0627\u0628\u062f\u0623 \u062d\u0648\u0627\u0631\u0627\u064b',
+    footerSubsTitle: '\u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u062a\u0627\u0628\u0639\u0629',
+    footerSubs: ['\u0639\u0632\u0648\u0629 \u0644\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a','\u0639\u0632\u0648\u0629 \u0644\u0644\u062a\u0642\u0646\u064a\u0629','\u0639\u0632\u0648\u0629 \u0644\u0644\u0639\u0642\u0627\u0631\u0627\u062a','\u0639\u0632\u0648\u0629 \u0644\u0644\u0631\u0623\u0633 \u0627\u0644\u0645\u0627\u0644'],
+    footerPortTitle: '\u0627\u0644\u0645\u062d\u0641\u0638\u0629',
+    footerPort: ['\u0643\u0627\u0632\u0646\u062f','\u0627\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062b\u0627\u0646\u064a\u0629','\u064a\u0642\u0637\u064a\u0646','\u0645\u062d\u0648\u0631 \u062a\u0646\u0645\u064a\u0629 \u0627\u0644\u0623\u0639\u0645\u0627\u0644'],
+    footerConnTitle: '\u062a\u0648\u0627\u0635\u0644',
+    footerConn1: '\u0644\u064a\u0646\u0643\u062f \u0625\u064a\u0646 \u2197',
+    footerConn2: 'info@auzuaholding.com',
+    footerConn3: '\u062c\u062f\u0629 \u00b7 \u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629',
+    footerCopy: '\u00a9 2026 \u0645\u062c\u0645\u0648\u0639\u0629 \u0639\u0632\u0648\u0629 \u0627\u0644\u0642\u0627\u0628\u0636\u0629',
+    footerTag: '\u0628\u0646\u0627\u0621 \u0645\u0634\u0627\u0631\u064a\u0639 \u0645\u0624\u0633\u0633\u064a\u0629 \u00b7 \u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629'
+  };
+
+  /* Initialise: apply saved language */
+  if (currentLang === 'ar') switchLang('ar');
 </script>
 
 </body>
